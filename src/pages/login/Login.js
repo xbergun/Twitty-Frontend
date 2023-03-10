@@ -11,6 +11,7 @@ import {
   Divider,
   Box,
   Center,
+  useToast,
 } from "native-base";
 import {
   MaterialIcons,
@@ -19,18 +20,38 @@ import {
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
 
-import CustomButton from "../../components/customComponents/customButton/CustomButton";
+import CustomButton from "../../components/customComponents/CustomButton";
+import axios from "axios";
+import { apiCall } from '../../common/api/apiCall';
 
 const Login = ({ navigation }) => {
-  const [name, setName] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [show, setShow] = useState(false);
 
+  const toast = useToast();
+  
   const onRegisterHandler = () => {
     navigation.navigate("Register");
   };
-  const onLoginHandler = () => {
-    navigation.navigate("Home");
+
+
+
+  const onLoginHandler = async () => {
+    const response = await apiCall('auth/login', 'POST', {username, password});
+    
+    if(response) {
+      navigation.navigate("Home");
+    }else{
+      toast.show({
+        placement: "top",
+        render: () => {
+          return <Box bg="red.300" px="2" py="1" rounded="sm" mb={5}>
+                  Kullanıcı adı veya şifre hatalı, lütfen bilgilerinizi kontrol ediniz.
+                </Box>;
+        }
+      });
+    }
   };
 
   return (
@@ -57,9 +78,9 @@ const Login = ({ navigation }) => {
             color="muted.400"
           />
         }
-        onChangeText={setName}
-        value={name}
-        placeholder="Name"
+        onChangeText={setUsername}
+        value={username}
+        placeholder="Username"
         placeholderTextColor="black"
       />
 
@@ -92,6 +113,8 @@ const Login = ({ navigation }) => {
 
       <CustomButton
         mx={10}
+        height={ "6%"}
+        width={ "80%"}
         onPressHandler={onLoginHandler}
         buttonBg={"black"}
         buttonText={"Sign in"}

@@ -9,16 +9,16 @@ const CustomButton = ({
   buttonBorderTopRightRadius,
   buttonBorderBottomLeftRadius,
   buttonBorderTopLeftRadius,
-  width,
-  heigh,
+  width="50%",
+  height="110%",
   mx,
   buttonTextStyle,
-  mt
+  mt,
 }) => {
   return (
     <Button
       w={width}
-      h={heigh}
+      h={height}
       borderBottomRightRadius={buttonBorderBottomRightRadius}
       borderTopRightRadius={buttonBorderTopRightRadius}
       borderBottomLeftRadius={buttonBorderBottomLeftRadius}

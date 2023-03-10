@@ -1,14 +1,9 @@
-import { Animated, FlatList } from "react-native";
-import React, { useState, useRef } from "react";
-import { Button, VStack, HStack } from "native-base";
-import Slides from "../../components/carousel/carouselArea/images-descriptions";
-import Pagination from "../../components/carousel/pagination/Pagination";
-import SlideItem from "../../components/carousel/slideItem/SlideItem";
-import CustomButton from "../../components/customComponents/customButton/CustomButton";
+import React from "react";
+import {VStack, HStack } from "native-base";
+import CustomButton from "../../components/customComponents/CustomButton.js";
+import Carousel from "../../components/carousel/Carousel";
 
 const FirstPage = ({ navigation }) => {
-  const [index, setIndex] = useState(0);
-  const scrollX = useRef(new Animated.Value(0)).current;
 
   const onSignInHandler = () => {
     navigation.navigate("Login");
@@ -18,52 +13,15 @@ const FirstPage = ({ navigation }) => {
     navigation.navigate("Register");
   };
 
-  const handleOnScroll = (event) => {
-    Animated.event(
-      [
-        {
-          nativeEvent: {
-            contentOffset: {
-              x: scrollX,
-            },
-          },
-        },
-      ],
-      {
-        useNativeDriver: false,
-      }
-    )(event);
-  };
-
-  const handleOnViewableItemsChanged = useRef(({ viewableItems }) => {
-    setIndex(viewableItems[0].index);
-  }).current;
-
-  const viewabilityConfig = useRef({
-    itemVisiblePercentThreshold: 50,
-  }).current;
-
   return (
     <VStack alignItems="center" display="flex" flex={1} bg="white">
       <VStack flex={6}>
-        <FlatList
-          data={Slides}
-          renderItem={({ item }) => <SlideItem item={item} />}
-          horizontal
-          pagingEnabled
-          snapToAlignment="center"
-          showsHorizontalScrollIndicator={false}
-          onScroll={handleOnScroll}
-          onViewableItemsChanged={handleOnViewableItemsChanged}
-          viewabilityConfig={viewabilityConfig}
-        />
-        <Pagination data={Slides} scrollX={scrollX} index={index} />
+        <Carousel/>
       </VStack>
       <VStack flex={1}>
         <HStack mx={35}>
           <CustomButton
             width={"50%"}
-            heigh={"110%"}
             onPressHandler={onSignInHandler}
             buttonText={"Sign in"}
             buttonBg={"black"}
@@ -73,7 +31,6 @@ const FirstPage = ({ navigation }) => {
           />
           <CustomButton
             width={"50%"}
-            heigh={"110%"}
             onPressHandler={onRegisterHandler}
             buttonText={"Register"}
             buttonBorderBottomLeftRadius={0}
