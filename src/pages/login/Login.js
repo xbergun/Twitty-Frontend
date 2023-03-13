@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import {
-  Button,
   Text,
   VStack,
   HStack,
@@ -21,8 +20,10 @@ import {
 } from "@expo/vector-icons";
 
 import CustomButton from "../../components/customComponents/CustomButton";
-import axios from "axios";
-import { apiCall } from '../../common/api/apiCall';
+import { apiCall } from "../../common/api/apiCall";
+import CustomToast from "../../components/customComponents/CustomToast.js";
+import CustomIcon from "../../components/customComponents/CustomIcon";
+import CustomInput from "../../components/customComponents/CustomInput";
 
 const Login = ({ navigation }) => {
   const [username, setUsername] = useState("");
@@ -30,26 +31,29 @@ const Login = ({ navigation }) => {
   const [show, setShow] = useState(false);
 
   const toast = useToast();
-  
+
   const onRegisterHandler = () => {
     navigation.navigate("Register");
   };
 
-
-
   const onLoginHandler = async () => {
-    const response = await apiCall('auth/login', 'POST', {username, password});
-    
-    if(response) {
+    const response = await apiCall("auth/login", "POST", {
+      username,
+      password,
+    });
+
+    if (response) {
       navigation.navigate("Home");
-    }else{
-      toast.show({
+    } else {
+      return toast.show({
         placement: "top",
         render: () => {
-          return <Box bg="red.300" px="2" py="1" rounded="sm" mb={5}>
-                  Kullanıcı adı veya şifre hatalı, lütfen bilgilerinizi kontrol ediniz.
-                </Box>;
-        }
+          return (
+            <Box bg="red.400" px="2" py="1" rounded="sm" mb={5}>
+              Kullanıcı adı veya şifre hatalı, lütfen tekrar deneyiniz.
+            </Box>
+          );
+        },
       });
     }
   };
@@ -66,28 +70,25 @@ const Login = ({ navigation }) => {
         You have been missed
       </Text>
 
-      <Input
-        h="6%"
-        mt="5%"
-        mx="10%"
-        InputLeftElement={
+      <CustomInput
+        onChangeText={setUsername}
+        value={username}
+        labelName={"Username"}
+        pl={8}
+        InputRightElement={
           <Icon
+            style={{ position: "absolute", left: 0 }}
             as={<MaterialIcons name="person" />}
             size={5}
             ml="2"
             color="muted.400"
           />
         }
-        onChangeText={setUsername}
-        value={username}
-        placeholder="Username"
-        placeholderTextColor="black"
       />
-
-      <Input
-        h="6%"
-        my="2%"
-        mx="10%"
+      <CustomInput
+        onChangeText={setPassword}
+        value={password}
+        labelName={"Password"}
         type={show ? "text" : "password"}
         InputRightElement={
           <Pressable onPress={() => setShow(!show)}>
@@ -101,10 +102,6 @@ const Login = ({ navigation }) => {
             />
           </Pressable>
         }
-        onChangeText={setPassword}
-        value={password}
-        placeholder="Enter your Password"
-        placeholderTextColor="black"
       />
 
       <Text mb="8%" alignSelf="flex-end" mr={10} bold>
@@ -113,12 +110,12 @@ const Login = ({ navigation }) => {
 
       <CustomButton
         mx={10}
-        height={ "6%"}
-        width={ "80%"}
+        height={"6%"}
+        width={"80%"}
         onPressHandler={onLoginHandler}
         buttonBg={"black"}
         buttonText={"Sign in"}
-        buttonTextStyle={{fontSize:"20",fontWeight:"bold"}}
+        buttonTextStyle={{ fontSize: "20", fontWeight: "bold" }}
       />
 
       <Box w={160} display="flex" flexDirection="row">
@@ -131,34 +128,9 @@ const Login = ({ navigation }) => {
 
       <Center mt={10}>
         <HStack space={3} alignContent="center">
-          <Icon
-            as={AntDesign}
-            size="2xl"
-            name="android1"
-            color="coolGray.800"
-            _dark={{
-              color: "warmGray.50",
-            }}
-          />
-
-          <Icon
-            as={Entypo}
-            size="2xl"
-            name="app-store"
-            color="coolGray.800"
-            _dark={{
-              color: "warmGray.50",
-            }}
-          />
-          <Icon
-            as={MaterialCommunityIcons}
-            size="2xl"
-            name="web"
-            color="coolGray.800"
-            _dark={{
-              color: "warmGray.50",
-            }}
-          />
+          <CustomIcon as={AntDesign} iconName="android1" />
+          <CustomIcon as={Entypo} iconName="app-store" />
+          <CustomIcon as={MaterialCommunityIcons} iconName="web" />
         </HStack>
       </Center>
 

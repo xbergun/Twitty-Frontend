@@ -1,8 +1,19 @@
 import React, { useState } from "react";
-import { Text, VStack, Input, Link, FormControl ,useToast, Box} from "native-base";
+import {
+  Text,
+  VStack,
+  Input,
+  Link,
+  useToast,
+  Box,
+} from "native-base";
 import CustomButton from "../../components/customComponents/CustomButton";
+import { apiCall } from "../../common/api/apiCall";
+import CustomInput from "../../components/customComponents/CustomInput";
+import { useSelector } from "react-redux";
+import postRegister from "../../common/api/auth/postRegister";
 import axios from "axios";
-import { apiCall } from '../../common/api/apiCall';
+import { API_STATUS } from "../../common/enums/apiEnums";
 
 const Register = ({ navigation }) => {
   const [name, setName] = useState("");
@@ -11,46 +22,39 @@ const Register = ({ navigation }) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
 
-  const toast = useToast();
+  // const toast = useToast();
+
+  // const registerUserStatus = useSelector((state) => state?.auth?.registerUserStatus);
 
   const onRegisterHandler = () => {
     navigation.navigate("Login");
   };
-  
+
   const onLoginHandler = () => {
     if (password !== confirmPassword) {
       alert("Password and Confirm Password must be same");
     } else {
       registerHandler();
-      navigation.navigate("Login");
     }
   };
 
+  // const user = useSelector((state) => state.auth);
+  // console.log(user)
+
   const registerHandler = async () => {
-    apiCall('auth/register', 'POST', {name, username, email, password}
-    ).then((response) => {
-      if(response) {
-        toast.show({
-          placement: "top",
-          render: () => {
-            return <Box bg="green.300" px="2" py="1" rounded="sm" mb={5}>
-                    Kullanıcı başarıyla oluşturuldu.
-                  </Box>;
-          }
-        });
-      }else{
-        toast.show({
-          placement: "top",
-          render: () => {
-            return <Box bg="red.300" px="2" py="1" rounded="sm" mb={5}>
-                    Kullanıcı adı veya şifre hatalı, lütfen bilgilerinizi kontrol ediniz.
-                  </Box>;
-          }
-        });
-      }
-    }
-    );
+    const requestBody = {
+      name,
+      username,
+      email,
+      password,
+    };
+
+  const request = await postRegister(JSON.stringify(requestBody));
+
+  console.log(request)
+
   };
+
 
   return (
     <VStack display="flex" flex={1} bg="white">
@@ -64,51 +68,41 @@ const Register = ({ navigation }) => {
         you have a greatful journey
       </Text>
 
-      <FormControl>
-        <FormControl.Label ml={"9%"}>Name</FormControl.Label>
-        <Input mt="1%" mx="9%" onChangeText={setName} value={name} />
-      </FormControl>
+      {/* {
+        registerUserStatus === API_STATUS.SUCCESS && (
+          alert("User Registered Successfully")
+        )
+      } */}
+    
 
-      <FormControl>
-        <FormControl.Label ml={"9%"}>Username</FormControl.Label>
-        <Input mt="1%" mx="9%" onChangeText={setUsername} value={username} />
-      </FormControl>
-
-      <FormControl>
-        <FormControl.Label ml={"9%"}>Email</FormControl.Label>
-        <Input mt="1%" mx="9%" onChangeText={setEmail} value={email} />
-      </FormControl>
-
-      <FormControl>
-        <FormControl.Label ml={"9%"}>Password</FormControl.Label>
-        <Input
-          mt="1%"
-          mx="9%"
-          type="password"
-          onChangeText={setPassword}
-          value={password}
-        />
-      </FormControl>
-
-      <FormControl>
-        <FormControl.Label ml={"9%"}>Confirm Password</FormControl.Label>
-        <Input
-          mt="1%"
-          mx="9%"
-          type="password"
-          onChangeText={setConfirmPassword}
-          value={confirmPassword}
-        />
-      </FormControl>
+      <CustomInput labelName="Name" onChangeText={setName} value={name} />
+      <CustomInput
+        labelName="Username"
+        onChangeText={setUsername}
+        value={username}
+      />
+      <CustomInput labelName="Email" onChangeText={setEmail} value={email} />
+      <CustomInput
+        labelName="Password"
+        onChangeText={setPassword}
+        value={password}
+        type="password"
+      />
+      <CustomInput
+        labelName="Confirm Password"
+        onChangeText={setConfirmPassword}
+        value={confirmPassword}
+        type="password"
+      />
 
       <CustomButton
         buttonText={"Sign up"}
         mt={5}
         height={"6%"}
-        width={"82%"}
+        width={"80%"}
         buttonBg={"black"}
         buttonTextStyle={{ fontWeight: "bold", fontSize: 20 }}
-        mx={10}
+        mx={"10%"}
         onPressHandler={onLoginHandler}
       />
 
