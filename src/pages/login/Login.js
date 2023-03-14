@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Text,
   VStack,
@@ -27,14 +27,36 @@ import postLogin from "../../common/api/auth/postLogin";
 import { useSelector } from "react-redux";
 import { API_STATUS } from "../../common/enums/apiEnums";
 
+
 const Login = ({ navigation }) => {
-  const loginStatus = useSelector((state) => state?.auth?.userData);
+  const loginStatus = useSelector((state) => state?.auth?.loginStatus);
+  const userData = useSelector((state) => state?.auth?.userData);
+
+  console.log("userData", userData)
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [show, setShow] = useState(false);
 
   const toast = useToast();
+
+  useEffect(() => {
+    if (loginStatus === API_STATUS.SUCCESS) {
+
+      alert("Login Success")
+
+      navigation.navigate("Home");
+    } else if (loginStatus === API_STATUS.FAILURE) {
+      alert("Please check your credentials")
+    }
+  }, [loginStatus]);
+
+
+  // useEffect(() => {
+  //   if(userData) {
+  //     AsyncStorage.setItem("accessToken", userData?.access_token);
+  //   }
+  // }, [userData]);
 
   const onRegisterHandler = () => {
     navigation.navigate("Register");
@@ -45,11 +67,10 @@ const Login = ({ navigation }) => {
       username,
       password,
     };
-    await postLogin(JSON.stringify(requestBody)).catch((error) => {
+    await postLogin(JSON.stringify(requestBody))
+    .catch((error) => {
       console.log("error", error);
     });
-
-    loginStatus === API_STATUS.SUCCESS && navigation.navigate("Home");
   };
 
   return (
