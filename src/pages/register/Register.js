@@ -1,18 +1,9 @@
 import React, { useState } from "react";
-import {
-  Text,
-  VStack,
-  Input,
-  Link,
-  useToast,
-  Box,
-} from "native-base";
+import { Text, VStack, HStack } from "native-base";
 import CustomButton from "../../components/customComponents/CustomButton";
-import { apiCall } from "../../common/api/apiCall";
 import CustomInput from "../../components/customComponents/CustomInput";
 import { useSelector } from "react-redux";
 import postRegister from "../../common/api/auth/postRegister";
-import axios from "axios";
 import { API_STATUS } from "../../common/enums/apiEnums";
 
 const Register = ({ navigation }) => {
@@ -24,7 +15,9 @@ const Register = ({ navigation }) => {
 
   // const toast = useToast();
 
-  // const registerUserStatus = useSelector((state) => state?.auth?.registerUserStatus);
+  const registerUserStatus = useSelector(
+    (state) => state?.auth?.registerUserStatus
+  );
 
   const onRegisterHandler = () => {
     navigation.navigate("Login");
@@ -49,16 +42,17 @@ const Register = ({ navigation }) => {
       password,
     };
 
-  const request = await postRegister(JSON.stringify(requestBody));
+    await postRegister(JSON.stringify(requestBody)).catch((error) => {
+      alert("kullanıcı adı veya mail adresi kullanımda");
+      console.log("error", error);
+    });
 
-  console.log(request)
-
+    registerUserStatus === API_STATUS.SUCCESS && navigation.navigate("Login");
   };
-
 
   return (
     <VStack display="flex" flex={1} bg="white">
-      <Text fontSize="45" alignSelf="flex-start" ml={10} my={2} bold>
+      <Text fontSize="10" alignSelf="flex-start" ml={10} my={2} bold>
         Lets Register Account
       </Text>
       <Text fontSize="25" alignSelf="flex-start" ml={10}>
@@ -67,13 +61,6 @@ const Register = ({ navigation }) => {
       <Text fontSize="25" alignSelf="flex-start" ml={10}>
         you have a greatful journey
       </Text>
-
-      {/* {
-        registerUserStatus === API_STATUS.SUCCESS && (
-          alert("User Registered Successfully")
-        )
-      } */}
-    
 
       <CustomInput labelName="Name" onChangeText={setName} value={name} />
       <CustomInput
@@ -98,20 +85,26 @@ const Register = ({ navigation }) => {
       <CustomButton
         buttonText={"Sign up"}
         mt={5}
-        height={"6%"}
-        width={"80%"}
+        height={"8%"}
+        width={"81%"}
         buttonBg={"black"}
         buttonTextStyle={{ fontWeight: "bold", fontSize: 20 }}
         mx={"10%"}
         onPressHandler={onLoginHandler}
       />
-
-      <Text mt="8%" mx={10} alignSelf="center" fontSize={15}>
-        Already have an account?{" "}
-        <Link fontWeight="bold" onPress={onRegisterHandler}>
-          Login
-        </Link>
-      </Text>
+      <HStack
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+        mt="8%"
+      >
+        <Text alignSelf="center" fontSize={17}>
+          Already have an account?{" "}
+          <Text bold onPress={onRegisterHandler} fontSize={18}>
+            Login
+          </Text>
+        </Text>
+      </HStack>
     </VStack>
   );
 };
