@@ -4,6 +4,8 @@ import { API_STATUS } from "../../common/enums/apiEnums";
 
 const initialState = {
   registerUserStatus: API_STATUS.NONE,
+
+  loginStatus: API_STATUS.NONE,
   userData: null,
 };
 
@@ -14,25 +16,22 @@ const AuthSlice = createSlice({
     getRegisterRequest: (state) => {
       state.registerUserStatus = API_STATUS.REQUEST;
     },
-    getRegisterSuccess: (state, action) => {
+    getRegisterSuccess: (state) => {
       state.registerUserStatus = API_STATUS.SUCCESS;
-      state.userData = action.payload;
     },
-    getRegisterFailure: (state, action) => {
+    getRegisterFailure: (state) => {
       state.registerUserStatus = API_STATUS.FAILURE;
-      state.userData = action.payload;
     },
 
     getLoginRequest: (state) => {
-      state.registerUserStatus = API_STATUS.REQUEST;
+      state.loginStatus = API_STATUS.REQUEST;
     },
     getLoginSuccess: (state, action) => {
-      state.registerUserStatus = API_STATUS.SUCCESS;
+      state.loginStatus = API_STATUS.SUCCESS;
       state.userData = action.payload;
     },
-    getLoginFailure: (state, action) => {
-      state.registerUserStatus = API_STATUS.FAILURE;
-      state.userData = action.payload;
+    getLoginFailure: (state) => {
+      state.loginStatus = API_STATUS.FAILURE;
     },
   },
 });

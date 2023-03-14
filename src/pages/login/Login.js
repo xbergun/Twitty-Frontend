@@ -25,8 +25,11 @@ import CustomIcon from "../../components/customComponents/CustomIcon";
 import CustomInput from "../../components/customComponents/CustomInput";
 import postLogin from "../../common/api/auth/postLogin";
 import { useSelector } from "react-redux";
+import { API_STATUS } from "../../common/enums/apiEnums";
 
 const Login = ({ navigation }) => {
+  const loginStatus = useSelector((state) => state?.auth?.userData);
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [show, setShow] = useState(false);
@@ -45,10 +48,9 @@ const Login = ({ navigation }) => {
     await postLogin(JSON.stringify(requestBody)).catch((error) => {
       console.log("error", error);
     });
-  };
 
-  const loginStatus = useSelector((state) => state?.auth?.loginStatus);
-  console.log(loginStatus);
+    loginStatus === API_STATUS.SUCCESS && navigation.navigate("Home");
+  };
 
   return (
     <VStack display="flex" flex={1} bg="white">
