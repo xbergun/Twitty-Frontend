@@ -52,7 +52,7 @@ const Register = ({ navigation }) => {
 
   return (
     <VStack display="flex" flex={1} bg="white">
-      <Text fontSize="10" alignSelf="flex-start" ml={10} my={2} bold>
+      <Text fontSize="40" alignSelf="flex-start" ml={10} my={2} bold>
         Lets Register Account
       </Text>
       <Text fontSize="25" alignSelf="flex-start" ml={10}>

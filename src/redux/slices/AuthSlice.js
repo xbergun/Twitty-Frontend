@@ -1,34 +1,48 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from "@reduxjs/toolkit";
 
-import { API_STATUS } from "../../common/enums/apiEnums"
+import { API_STATUS } from "../../common/enums/apiEnums";
 
 const initialState = {
-    registerUserStatus: API_STATUS.NONE,
-    userData: null
-}
+  registerUserStatus: API_STATUS.NONE,
+
+  loginStatus: API_STATUS.NONE,
+  userData: null,
+};
 
 const AuthSlice = createSlice({
-    name: 'auth',
-    initialState,
-    reducers: {
-        getRegisterRequest: (state) => {
-            state.registerUserStatus = API_STATUS.REQUEST
-        },
-        getRegisterSuccess: (state, action) => {
-            state.registerUserStatus = API_STATUS.SUCCESS
-            state.userData = action.payload
-        },
-        getRegisterFailure: (state,action) => {
-            state.registerUserStatus = API_STATUS.FAILURE
-            state.userData = action.payload
-        }
-    }
-})
+  name: "auth",
+  initialState,
+  reducers: {
+    getRegisterRequest: (state) => {
+      state.registerUserStatus = API_STATUS.REQUEST;
+    },
+    getRegisterSuccess: (state) => {
+      state.registerUserStatus = API_STATUS.SUCCESS;
+    },
+    getRegisterFailure: (state) => {
+      state.registerUserStatus = API_STATUS.FAILURE;
+    },
+
+    getLoginRequest: (state) => {
+      state.loginStatus = API_STATUS.REQUEST;
+    },
+    getLoginSuccess: (state, action) => {
+      state.loginStatus = API_STATUS.SUCCESS;
+      state.userData = action.payload;
+    },
+    getLoginFailure: (state) => {
+      state.loginStatus = API_STATUS.FAILURE;
+    },
+  },
+});
 
 export const {
-    getRegisterRequest,
-    getRegisterSuccess,
-    getRegisterFailure
-} = AuthSlice.actions
+  getRegisterRequest,
+  getRegisterSuccess,
+  getRegisterFailure,
+  getLoginRequest,
+  getLoginSuccess,
+  getLoginFailure,
+} = AuthSlice.actions;
 
-export default AuthSlice.reducer
+export default AuthSlice.reducer;
