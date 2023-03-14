@@ -6,4 +6,11 @@ export const apiConfig = {
       "Content-Type": "application/json",
     },
   },
+  LOGIN: {
+    endPoint: "/auth/login",
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  },
 };

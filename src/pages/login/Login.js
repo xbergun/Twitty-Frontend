@@ -20,10 +20,11 @@ import {
 } from "@expo/vector-icons";
 
 import CustomButton from "../../components/customComponents/CustomButton";
-import { apiCall } from "../../common/api/apiCall";
 import CustomToast from "../../components/customComponents/CustomToast.js";
 import CustomIcon from "../../components/customComponents/CustomIcon";
 import CustomInput from "../../components/customComponents/CustomInput";
+import postLogin from "../../common/api/auth/postLogin";
+import { useSelector } from "react-redux";
 
 const Login = ({ navigation }) => {
   const [username, setUsername] = useState("");
@@ -37,26 +38,17 @@ const Login = ({ navigation }) => {
   };
 
   const onLoginHandler = async () => {
-    const response = await apiCall("auth/login", "POST", {
+    const requestBody = {
       username,
       password,
+    };
+    await postLogin(JSON.stringify(requestBody)).catch((error) => {
+      console.log("error", error);
     });
-
-    if (response) {
-      navigation.navigate("Home");
-    } else {
-      return toast.show({
-        placement: "top",
-        render: () => {
-          return (
-            <Box bg="red.400" px="2" py="1" rounded="sm" mb={5}>
-              Kullanıcı adı veya şifre hatalı, lütfen tekrar deneyiniz.
-            </Box>
-          );
-        },
-      });
-    }
   };
+
+  const loginStatus = useSelector((state) => state?.auth?.loginStatus);
+  console.log(loginStatus);
 
   return (
     <VStack display="flex" flex={1} bg="white">
@@ -110,7 +102,7 @@ const Login = ({ navigation }) => {
 
       <CustomButton
         mx={10}
-        height={"6%"}
+        height={"8%"}
         width={"80%"}
         onPressHandler={onLoginHandler}
         buttonBg={"black"}
@@ -118,7 +110,7 @@ const Login = ({ navigation }) => {
         buttonTextStyle={{ fontSize: "20", fontWeight: "bold" }}
       />
 
-      <Box w={160} display="flex" flexDirection="row">
+      <Box w={145} display="flex" flexDirection="row">
         <Divider mt="10" ml={10} mr={2} bg="black"></Divider>
         <Text mt="7" bold>
           or

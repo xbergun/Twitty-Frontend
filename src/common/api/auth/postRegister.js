@@ -10,12 +10,11 @@ import {
 const postRegister = async (requestBody) => {
   store.dispatch(getRegisterRequest());
 
-
-  const { endPoint, method, headers } = apiConfig.RESGISTER;
+  const { endPoint, method, headers } = apiConfig.REGISTER;
 
   const response = await apiCall(method, requestBody, endPoint, headers);
   if (response.status === 200) {
-    alert("kayıt başarılı, lütfen giriş yapınız")
+    alert("kayıt başarılı, lütfen giriş yapınız");
     store.dispatch(getRegisterSuccess(response.data));
   } else {
     store.dispatch(getRegisterFailure(""));
