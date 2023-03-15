@@ -1,11 +1,17 @@
 import React from 'react'
 import { Icon } from 'native-base'
+import {
+  MaterialIcons,
+  AntDesign,
+  Entypo,
+  MaterialCommunityIcons,
+} from "@expo/vector-icons";
 
-const customIcon = ({
+const CustomIcon = ({
     size="2xl",
     iconName,
     color="coolGray.800",
-    as
+    as = MaterialIcons
 }) => {
   return (
     <Icon
@@ -13,11 +19,8 @@ const customIcon = ({
             size={size}
             name={iconName}
             color={color}
-            _dark={{
-              color: "warmGray.50",
-            }}
           />
   )
 }
 
-export default customIcon
+export default CustomIcon

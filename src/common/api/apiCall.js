@@ -1,7 +1,11 @@
 import axios from "axios";
 import baseUrl from "./baseUrl";
 
-export const apiCall = async (method, requestBody, endpoint, headers) => {
+export const apiCall = async (method, requestBody, endpoint) => {
+  const headers = {
+    "Content-Type": "application/json",
+  };
+
   const config = {
     url: baseUrl + endpoint,
     method,

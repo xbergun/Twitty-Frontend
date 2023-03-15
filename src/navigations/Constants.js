@@ -9,7 +9,7 @@ export const  BOTTOM_TAB_ROUTES = {
     SEARCH: "SearchScreen",
     ADD: "AddScreen",
     NOTIFICATION: "NotificationScreen",
-    PROFILE: "ProfileScreen",
+    MESSAGES: "MessagesScreen",
 }
 
 export const  DRAWER_ROUTES = {

@@ -32,8 +32,6 @@ const Login = ({ navigation }) => {
   const loginStatus = useSelector((state) => state?.auth?.loginStatus);
   const userData = useSelector((state) => state?.auth?.userData);
 
-  console.log("userData", userData)
-
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [show, setShow] = useState(false);
