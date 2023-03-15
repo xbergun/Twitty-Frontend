@@ -6,7 +6,7 @@ const initialState = {
   registerUserStatus: API_STATUS.NONE,
 
   loginStatus: API_STATUS.NONE,
-  userData: null,
+  userData: [],
 };
 
 const AuthSlice = createSlice({
