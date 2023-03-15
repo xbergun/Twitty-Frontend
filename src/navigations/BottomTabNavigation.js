@@ -8,6 +8,11 @@ const Tab = createBottomTabNavigator();
 export default BottomTabNavigation = () => {
   return (
     <Tab.Navigator
+      screenOptions={
+        {
+          headerShown: false,
+        }
+      }
     >
       {bottomTabBarRoutes.map((route, index) => {
         return (

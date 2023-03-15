@@ -11,3 +11,10 @@ export const  BOTTOM_TAB_ROUTES = {
     NOTIFICATION: "NotificationScreen",
     PROFILE: "ProfileScreen",
 }
+
+export const  DRAWER_ROUTES = {
+    BOTTOM_TAB_ROUTES: "BottomTabRoutes",
+    PROFILE: "ProfileScreen",
+    SETTINGS: "SettingsScreen",
+    LOGOUT: "Logout",
+}
