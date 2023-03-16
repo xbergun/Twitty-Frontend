@@ -3,10 +3,10 @@ import { createSlice } from "@reduxjs/toolkit";
 import { API_STATUS } from "../../common/enums/apiEnums";
 
 const initialState = {
+  userData: null,
+  
   registerUserStatus: API_STATUS.NONE,
-
   loginStatus: API_STATUS.NONE,
-  userData: [],
 };
 
 const AuthSlice = createSlice({

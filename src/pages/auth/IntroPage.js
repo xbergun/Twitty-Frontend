@@ -2,6 +2,7 @@ import React from "react";
 import {VStack, HStack } from "native-base";
 import CustomButton from "../../components/customComponents/CustomButton.js";
 import Carousel from "../../components/carousel/Carousel";
+import i18n from "../../common/localization/i18n.js";
 
 const FirstPage = ({ navigation }) => {
 
@@ -23,7 +24,7 @@ const FirstPage = ({ navigation }) => {
           <CustomButton
             width={"50%"}
             onPressHandler={onSignInHandler}
-            buttonText={"Sign in"}
+            buttonText={i18n.t("Intro.SignInButton")}
             buttonBg={"black"}
             buttonBorderBottomRightRadius={0}
             buttonBorderTopRightRadius={0}
@@ -32,7 +33,7 @@ const FirstPage = ({ navigation }) => {
           <CustomButton
             width={"50%"}
             onPressHandler={onRegisterHandler}
-            buttonText={"Register"}
+            buttonText={i18n.t("Intro.SignUpButton")}
             buttonBorderBottomLeftRadius={0}
             buttonBorderTopLeftRadius={0}
             buttonTextStyle={{fontSize:"25",fontWeight:"bold"}}
