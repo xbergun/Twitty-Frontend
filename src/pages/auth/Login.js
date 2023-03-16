@@ -26,6 +26,7 @@ import CustomInput from "../../components/customComponents/CustomInput";
 import postLogin from "../../common/api/auth/postLogin";
 import { useSelector } from "react-redux";
 import { API_STATUS } from "../../common/enums/apiEnums";
+import i18n from "../../common/localization/i18n";
 
 
 const Login = ({ navigation }) => {
@@ -68,25 +69,25 @@ const Login = ({ navigation }) => {
     await postLogin(JSON.stringify(requestBody))
     .catch((error) => {
       console.log("error", error);
-    });
+    })
   };
 
   return (
     <VStack display="flex" flex={1} bg="white">
       <Text fontSize="40" alignSelf="flex-start" ml={10} my={2} bold>
-        Lets Sign you in
+        {i18n.t("Login.LetsSign")}
       </Text>
       <Text fontSize="30" alignSelf="flex-start" ml={10} bold>
-        Welcome Back ,
+      {i18n.t("Login.WelcomeBack")}
       </Text>
       <Text fontSize="30" alignSelf="flex-start" ml={10} bold>
-        You have been missed
+      {i18n.t("Login.Missed")}
       </Text>
 
       <CustomInput
         onChangeText={setUsername}
         value={username}
-        labelName={"Username"}
+        labelName={i18n.t("Input.Username")}
         pl={8}
         InputRightElement={
           <Icon
@@ -101,7 +102,7 @@ const Login = ({ navigation }) => {
       <CustomInput
         onChangeText={setPassword}
         value={password}
-        labelName={"Password"}
+        labelName={i18n.t("Input.Password")}
         type={show ? "text" : "password"}
         InputRightElement={
           <Pressable onPress={() => setShow(!show)}>
@@ -118,7 +119,7 @@ const Login = ({ navigation }) => {
       />
 
       <Text mb="8%" alignSelf="flex-end" mr={10} bold>
-        Forgot Password?
+      {i18n.t("Login.ForgotPassword")}
       </Text>
 
       <CustomButton
@@ -127,7 +128,7 @@ const Login = ({ navigation }) => {
         width={"80%"}
         onPressHandler={onLoginHandler}
         buttonBg={"black"}
-        buttonText={"Sign in"}
+        buttonText={i18n.t("Login.Login")}
         buttonTextStyle={{ fontSize: "20", fontWeight: "bold" }}
       />
 
@@ -148,9 +149,9 @@ const Login = ({ navigation }) => {
       </Center>
 
       <Text mt="8%" mx={10} alignSelf="center">
-        Don't you have an account?{" "}
+      {i18n.t("Login.DontYouHaveAccount")}{` `}
         <Link fontWeight="bold" onPress={onRegisterHandler}>
-          Register Now
+        {i18n.t("Login.RegisterNow")}
         </Link>
       </Text>
     </VStack>

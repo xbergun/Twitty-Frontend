@@ -1,0 +1,30 @@
+{
+    "Intro.Title": "Ekip Çalismasi",
+    "Intro.Description": "Team Work All, dahili topluluklar ve sosyal intranet oluşturmak ve bunlarla etkileşim kurmak için bir platformdur. İnsanların işlerini yaptığı, bilgi ve birikimi paylaştığı ve etraflarında olup bitenleri keşfettiği bir yerdir.",
+    "Intro.SignInButton" : "Giris Yap",
+    "Intro.SignUpButton" : "Kayit Ol",
+    
+    "Login.LetsSign" : "Hadi Üye Olalim",
+    "Login.WelcomeBack" : "Tekrar Hoşgeldiniz",
+    "Login.Missed" : "Bayadir Yoktun :)",
+    "Login.ForgotPassword" : "Şifremi Unuttum",
+    "Login.Login" : "Giriş Yap",
+    "Login.DontYouHaveAccount" : "Hesabin mi yok?",
+    "Login.RegisterNow" : "Şimdi Kayit Ol",
+
+    "Register.LetsRegister" : "Simdi Hesap Olustur",
+    "Register.Hello" : "Merhaba",
+    "Register.Great" : "Harika bir gunlugun var",
+    "Register.SignUpButton" : "Kayit Ol",
+    "Register.AlreadyHaveAccount" : "Bir Hesabın Var Mi? ",
+    "Register.Login" : "Giriş",
+
+    "Input.Name" : "İsim",
+    "Input.Username" : "Kullanıcı Adı",
+    "Input.Email" : "E-posta",
+    "Input.Password" : "Şifre",
+    "Input.ConfirmPassword" : "Şifreyi Onayla"
+
+
+
+}

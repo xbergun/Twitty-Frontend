@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { Text, VStack, HStack } from "native-base";
+import { Text, VStack, HStack, Button } from "native-base";
 import CustomButton from "../../components/customComponents/CustomButton";
 import CustomInput from "../../components/customComponents/CustomInput";
 import { useSelector } from "react-redux";
 import postRegister from "../../common/api/auth/postRegister";
 import { API_STATUS } from "../../common/enums/apiEnums";
+import i18n from "../../common/localization/i18n";
 
 const Register = ({ navigation }) => {
   const [name, setName] = useState("");
@@ -53,37 +54,41 @@ const Register = ({ navigation }) => {
   return (
     <VStack display="flex" flex={1} bg="white">
       <Text fontSize="40" alignSelf="flex-start" ml={10} my={2} bold>
-        Lets Register Account
+        {i18n.t("Register.LetsRegister")}
       </Text>
       <Text fontSize="25" alignSelf="flex-start" ml={10}>
-        Hello ,
+        {i18n.t("Register.Hello")}
       </Text>
       <Text fontSize="25" alignSelf="flex-start" ml={10}>
-        you have a greatful journey
+        {i18n.t("Register.Great")}
       </Text>
 
-      <CustomInput labelName="Name" onChangeText={setName} value={name} />
+      <CustomInput 
+      labelName={i18n.t("Input.Name")}
+      onChangeText={setName} 
+      value={name} />
+      
       <CustomInput
-        labelName="Username"
+        labelName={i18n.t("Input.Username")}
         onChangeText={setUsername}
         value={username}
       />
       <CustomInput labelName="Email" onChangeText={setEmail} value={email} />
       <CustomInput
-        labelName="Password"
+        labelName={i18n.t("Input.Password")}
         onChangeText={setPassword}
         value={password}
         type="password"
       />
       <CustomInput
-        labelName="Confirm Password"
+        labelName={i18n.t("Input.ConfirmPassword")}
         onChangeText={setConfirmPassword}
         value={confirmPassword}
         type="password"
       />
 
       <CustomButton
-        buttonText={"Sign up"}
+        buttonText={i18n.t("Register.SignUpButton")}
         mt={5}
         height={"8%"}
         width={"81%"}
@@ -99,9 +104,9 @@ const Register = ({ navigation }) => {
         mt="8%"
       >
         <Text alignSelf="center" fontSize={17}>
-          Already have an account?{" "}
+        {i18n.t("Register.AlreadyHaveAccount")} 
           <Text bold onPress={onRegisterHandler} fontSize={18}>
-            Login
+          {i18n.t("Register.Login")}
           </Text>
         </Text>
       </HStack>

@@ -1,0 +1,28 @@
+{
+    "Intro.Title": "Team Work All",
+    "Intro.Description": "Team Work All is a platform for building and engaging with internal communities and social intranet. It is a place where people get work done, share information and knowledge and discover what’s going on around them.",
+    "Intro.SignInButton" : "Sign In",
+    "Intro.SignUpButton" : "Register",
+
+    
+    "Login.LetsSign" : "Lets Sign you in",
+    "Login.WelcomeBack" : "Welcome Back ,",
+    "Login.Missed" : "You have been missed",
+    "Login.ForgotPassword" : "Forgot Password?",
+    "Login.Login" : "Sign In",
+    "Login.DontYouHaveAccount" : "Don't you have an account?",
+    "Login.RegisterNow" : "Register Now",
+
+    "Register.LetsRegister" : "Lets Register Account",
+    "Register.Hello" : "Hello ,",
+    "Register.Great" : "you have a greatful journey",
+    "Register.SignUpButton" : "Sign Up",
+    "Register.AlreadyHaveAccount" : "Already have an account?",
+    "Register.Login" : "Login",
+
+    "Input.Name" : "Name",
+    "Input.Username" : "Username",
+    "Input.Email" : "Email",
+    "Input.Password" : "Password",
+    "Input.ConfirmPassword" : "Confirm Password"
+}
