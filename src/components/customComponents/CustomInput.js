@@ -12,6 +12,7 @@ const CustomInput = ({
   labelName,
   value,
   InputRightElement,
+  InputLeftElement,
   pl,
 }) => {
   return (
@@ -26,6 +27,7 @@ const CustomInput = ({
         mx={mx}
         type={type}
         InputRightElement={InputRightElement}
+        InputLeftElement={InputLeftElement}
         onChangeText={onChangeText}
         value={value}
       />

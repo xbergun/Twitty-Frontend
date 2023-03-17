@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Text, VStack, HStack, Button } from "native-base";
+import React, { useState, useEffect } from "react";
+import { Text, VStack, HStack, Button, Toast } from "native-base";
 import CustomButton from "../../components/customComponents/CustomButton";
 import CustomInput from "../../components/customComponents/CustomInput";
 import { useSelector } from "react-redux";
@@ -16,9 +16,6 @@ const Register = ({ navigation }) => {
 
   // const toast = useToast();
 
-  const registerUserStatus = useSelector(
-    (state) => state?.auth?.registerUserStatus
-  );
 
   const onRegisterHandler = () => {
     navigation.navigate("Login");
@@ -32,9 +29,6 @@ const Register = ({ navigation }) => {
     }
   };
 
-  // const user = useSelector((state) => state.auth);
-  // console.log(user)
-
   const registerHandler = async () => {
     const requestBody = {
       name,
@@ -43,12 +37,7 @@ const Register = ({ navigation }) => {
       password,
     };
 
-    await postRegister(JSON.stringify(requestBody)).catch((error) => {
-      alert("kullanıcı adı veya mail adresi kullanımda");
-      console.log("error", error);
-    });
-
-    registerUserStatus === API_STATUS.SUCCESS && navigation.navigate("Login");
+    await postRegister(requestBody, navigation);
   };
 
   return (
