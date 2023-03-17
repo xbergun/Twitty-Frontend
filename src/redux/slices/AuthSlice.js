@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 import { API_STATUS } from "../../common/enums/apiEnums";
+import { setToken } from "../../helpers/auth/token";
 
 const initialState = {
   userData: null,
@@ -29,6 +30,7 @@ const AuthSlice = createSlice({
     getLoginSuccess: (state, action) => {
       state.loginStatus = API_STATUS.SUCCESS;
       state.userData = action.payload;
+      setToken(action.payload.access_token);
     },
     getLoginFailure: (state) => {
       state.loginStatus = API_STATUS.FAILURE;

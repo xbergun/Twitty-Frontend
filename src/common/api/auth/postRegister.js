@@ -6,18 +6,21 @@ import {
   getRegisterRequest,
   getRegisterSuccess,
 } from "../../../redux/slices/AuthSlice";
+import api from "../api";
 
-const postRegister = async (requestBody) => {
+const postRegister = async (requestBody,navigation) => {
   store.dispatch(getRegisterRequest());
 
-  const { endPoint, method, headers } = apiConfig.REGISTER;
+  try {
+    const response = await api.post(apiConfig.REGISTER.endPoint, requestBody);
+    if (response.status === 200) {
+      store.dispatch(getRegisterSuccess());
+      navigation.navigate("Login", { message: "Register Success" });
+    }
 
-  const response = await apiCall(method, requestBody, endPoint, headers);
-  if (response.status === 200) {
-    alert("kayıt başarılı, lütfen giriş yapınız");
-    store.dispatch(getRegisterSuccess(response.data));
-  } else {
-    store.dispatch(getRegisterFailure(""));
+  } catch (error) {
+    store.dispatch(getRegisterFailure());
+    alert(error);
   }
 };
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, useToast } from "native-base";
 
-const CustomToast = () => {
+const CustomToast = ({message}) => {
 
   const toast = useToast();
 
@@ -10,7 +10,7 @@ const CustomToast = () => {
     render: () => {
       return (
         <Box bg="blue.100" px="2" py="1" rounded="sm" mb={5}>
-          "toastMessage"
+          {message}
         </Box>
       );
     },

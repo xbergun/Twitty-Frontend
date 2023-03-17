@@ -1,4 +1,3 @@
-import { apiCall } from "../apiCall";
 import { apiConfig } from "../apiConfig";
 import { store } from "../../../redux/store";
 import {
@@ -6,17 +5,21 @@ import {
   getLoginSuccess,
   getLoginFailure,
 } from "../../../redux/slices/AuthSlice";
+import api from "../api";
+import { setToken } from "../../../helpers/auth/token";
 
 const postLogin = async (requestBody) => {
   store.dispatch(getLoginRequest());
 
-  const { endPoint, method, headers } = apiConfig.LOGIN;
+  const { endPoint } = apiConfig.LOGIN;
+  
 
-  const response = await apiCall(method, requestBody, endPoint, headers);
-  if (response.status === 200) {
+  try {
+    const response = await api.post(endPoint, requestBody);
     store.dispatch(getLoginSuccess(response.data));
-  } else {
-    store.dispatch(getLoginFailure(""));
+  } catch (error) {
+    console.log(error);
+    store.dispatch(getLoginFailure());
   }
 };
 

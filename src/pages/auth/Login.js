@@ -27,36 +27,33 @@ import postLogin from "../../common/api/auth/postLogin";
 import { useSelector } from "react-redux";
 import { API_STATUS } from "../../common/enums/apiEnums";
 import i18n from "../../common/localization/i18n";
+import Loading from '../../components/loading/Loading';
+import {AsyncStorage} from 'react-native';
 
 
-const Login = ({ navigation }) => {
-  const loginStatus = useSelector((state) => state?.auth?.loginStatus);
-  const userData = useSelector((state) => state?.auth?.userData);
 
+const Login = ({ navigation ,route}) => {
+  
+  //useSelector
+  const {loginStatus, userData} = useSelector((state) => state?.auth);  
+
+  console.log("userData", userData)
+  console.log("loginStatus", loginStatus)
+  
+  //useState
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [show, setShow] = useState(false);
-
-  const toast = useToast();
-
+  
+  const {message} = route.params || false;
+  
   useEffect(() => {
-    if (loginStatus === API_STATUS.SUCCESS) {
-
-      alert("Login Success")
-
-      navigation.navigate("Home");
-    } else if (loginStatus === API_STATUS.FAILURE) {
-      alert("Please check your credentials")
+    if (loginStatus == API_STATUS.FAILURE) {
+      alert("Kullanıcı adı veya şifre hatalı");
     }
   }, [loginStatus]);
 
-
-  // useEffect(() => {
-  //   if(userData) {
-  //     AsyncStorage.setItem("accessToken", userData?.access_token);
-  //   }
-  // }, [userData]);
-
+  //Functions
   const onRegisterHandler = () => {
     navigation.navigate("Register");
   };
@@ -66,13 +63,13 @@ const Login = ({ navigation }) => {
       username,
       password,
     };
-    await postLogin(JSON.stringify(requestBody))
-    .catch((error) => {
-      console.log("error", error);
-    })
+    await postLogin(requestBody);
   };
 
   return (
+    <>
+    {message && alert("Kayıt Başarılı") }
+    {loginStatus == API_STATUS.REQUEST ? <Loading /> : (
     <VStack display="flex" flex={1} bg="white">
       <Text fontSize="40" alignSelf="flex-start" ml={10} my={2} bold>
         {i18n.t("Login.LetsSign")}
@@ -89,9 +86,9 @@ const Login = ({ navigation }) => {
         value={username}
         labelName={i18n.t("Input.Username")}
         pl={8}
-        InputRightElement={
+        InputLeftElement={
           <Icon
-            style={{ position: "absolute", left: 0 }}
+            style={{ position: "absolute" }}
             as={<MaterialIcons name="person" />}
             size={5}
             ml="2"
@@ -104,6 +101,16 @@ const Login = ({ navigation }) => {
         value={password}
         labelName={i18n.t("Input.Password")}
         type={show ? "text" : "password"}
+        pl={8}
+        InputLeftElement={
+          <Icon
+            style={{ position: "absolute" }}
+            as={<MaterialIcons name="lock" />}
+            size={5}
+            ml="2"
+            color="muted.400"
+          />
+        }
         InputRightElement={
           <Pressable onPress={() => setShow(!show)}>
             <Icon
@@ -155,6 +162,9 @@ const Login = ({ navigation }) => {
         </Link>
       </Text>
     </VStack>
+    )}
+    </>
+    
   );
 };
 
