@@ -1,12 +1,13 @@
 import { FlatList, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import PostContent from "./PostContent/PostContent";
-import { posts } from "./postDummy";
 
-const Posts = () => {
+const Posts = ({posts}) => {
   const handleRenderItem = ({ item }) => {
     return <PostContent post={item} />;
   };
+
+  
 
   return (
     <FlatList

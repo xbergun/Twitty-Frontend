@@ -1,9 +1,9 @@
 import { BOTTOM_TAB_ROUTES } from "../navigations/Constants";
-import HomeScreen from "../pages/home/HomeScreen";
-import SearchScreen from "../pages/home/searchScreen";
+import HomeScreen from "../screens/home/HomeScreen";
+import SearchScreen from "../screens/search/searchScreen";
 import CustomIcon from "../components/customComponents/CustomIcon";
-import NotificationScreen from "../pages/notifications/NotificationScreen";
-import MessagesScreen from "../pages/messages/MessagesScreen";
+import NotificationScreen from "../screens/notifications/NotificationScreen";
+import MessagesScreen from "../screens/messages/MessagesScreen";
 
 export default bottomTabBarRoutes = [
   {

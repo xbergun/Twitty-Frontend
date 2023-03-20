@@ -1,7 +1,7 @@
 import { DRAWER_ROUTES } from '../navigations/Constants';
 import BottomTabNavigation from '../navigations/BottomTabNavigation';
-import ProfileScreen from '../pages/profile/profileScreen';
-import SettingsScreen from '../pages/settings/settingsScreen';
+import ProfileScreen from '../screens/profile/profileScreen';
+import SettingsScreen from '../screens/settings/settingsScreen';
 import CustomIcon from '../components/customComponents/CustomIcon';
 
 
