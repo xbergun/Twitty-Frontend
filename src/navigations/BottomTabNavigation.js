@@ -13,7 +13,6 @@ export default BottomTabNavigation = () => {
         {
           headerShown: false,
           tabBarShowLabel: false,
-          tabBarInactiveBackgroundColor: "#A0C3D2",
         }
         
       }
