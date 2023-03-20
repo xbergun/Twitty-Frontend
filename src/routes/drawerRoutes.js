@@ -12,7 +12,7 @@ export default drawerRoutes = [
         options : {
             drawerLabel : "Home",
             drawerIcon : ({}) =><CustomIcon  iconName="home" />,
-        
+            headerTitle: "Home Page"
         }
     },
     {
@@ -31,5 +31,13 @@ export default drawerRoutes = [
             drawerIcon : ({}) =><CustomIcon  iconName="settings" />
         }
     },
+    {
+        name: DRAWER_ROUTES.LOGOUT,
+        component: SettingsScreen,
+        options : {
+            drawerLabel : "Logout",
+            drawerIcon : ({}) =><CustomIcon  iconName="logout" />
+        }
+    }
 
 ];

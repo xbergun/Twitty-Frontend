@@ -1,43 +1,65 @@
 import { BOTTOM_TAB_ROUTES } from "../navigations/Constants";
-import HomeScreen from '../pages/home/HomeScreen';
+import HomeScreen from "../pages/home/HomeScreen";
 import SearchScreen from "../pages/home/searchScreen";
-import CustomIcon from '../components/customComponents/CustomIcon';
-import NotificationScreen from '../pages/notifications/NotificationScreen';
-import MessagesScreen from '../pages/messages/MessagesScreen';
+import CustomIcon from "../components/customComponents/CustomIcon";
+import NotificationScreen from "../pages/notifications/NotificationScreen";
+import MessagesScreen from "../pages/messages/MessagesScreen";
 
 export default bottomTabBarRoutes = [
-    {
-        name: BOTTOM_TAB_ROUTES.HOME,
-        component: HomeScreen,
-        options : {
-            headerTitle: "Home",
-            tabBarIcon : ({}) =><CustomIcon  iconName="home" />,
-            
-        }
+  {
+    name: BOTTOM_TAB_ROUTES.HOME,
+    component: HomeScreen,
+    options: {
+      headerTitle: "Home",
+      tabBarIcon: ({ focused, color, size }) => {
+        return focused ? (
+          <CustomIcon iconName="home" color="blue.500" />
+        ) : (
+          <CustomIcon iconName="home" color="coolGray.800" />
+        );
+      },
     },
-    {
-        name: BOTTOM_TAB_ROUTES.SEARCH,
-        component: SearchScreen,
-        options : {
-            headerTitle: "Search",
-            tabBarIcon : ({}) =><CustomIcon  iconName="search" />
-        }
+  },
+  {
+    name: BOTTOM_TAB_ROUTES.SEARCH,
+    component: SearchScreen,
+    options: {
+      headerTitle: "Search",
+      tabBarIcon: ({ focused }) => {
+        return focused ? (
+          <CustomIcon iconName="search" color="blue.500" />
+        ) : (
+          <CustomIcon iconName="search" color="coolGray.800" />
+        );
+      },
     },
-    {
-        name: BOTTOM_TAB_ROUTES.NOTIFICATION,
-        component: NotificationScreen,
-        options : {
-            headerTitle: "Notification",
-            tabBarIcon : ({}) =><CustomIcon  iconName="notifications" />
-
-        }
+  },
+  {
+    name: BOTTOM_TAB_ROUTES.NOTIFICATION,
+    component: NotificationScreen,
+    options: {
+      headerTitle: "Notification",
+      tabBarIcon: ({ focused }) => {
+        return focused ? (
+          <CustomIcon iconName="notifications" color="blue.500" />
+        ) : (
+          <CustomIcon iconName="notifications" color="coolGray.800" />
+        );
+      },
     },
-    {
-        name: BOTTOM_TAB_ROUTES.MESSAGES,
-        component: MessagesScreen,
-        options : {
-            headerTitle: "Messages",
-            tabBarIcon : ({}) =><CustomIcon  iconName="mail" />
-        }
-    }
+  },
+  {
+    name: BOTTOM_TAB_ROUTES.MESSAGES,
+    component: MessagesScreen,
+    options: {
+      headerTitle: "Messages",
+      tabBarIcon: ({ focused }) => {
+        return focused ? (
+          <CustomIcon iconName="mail" color="blue.500" />
+        ) : (
+          <CustomIcon iconName="mail" color="coolGray.800" />
+        );
+      },
+    },
+  },
 ];
