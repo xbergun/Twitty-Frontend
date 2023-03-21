@@ -11,6 +11,7 @@ export default drawerRoutes = [
         name: DRAWER_ROUTES.BOTTOM_TAB_ROUTES,
         component: BottomTabNavigation,
         options : {
+            headerShown: false,
             drawerLabel : "Home",
             drawerIcon : ({}) =><CustomIcon  iconName="home" />,
         }

@@ -9,7 +9,7 @@ export default DrawerNavigation = () => {
   return (
     <Drawer.Navigator screenOptions={(route) => {
       return {
-        headerShown: false,
+        headerShown: true,
         drawerLabel: () => {
           return (
             <Text>

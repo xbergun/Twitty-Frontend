@@ -14,7 +14,7 @@ export default BottomTabNavigation = () => {
     initialRouteName={HOME_ROUTES.HOME}
       screenOptions={
         {
-          headerShown: false,
+
           tabBarShowLabel: false,
   
         }

@@ -12,6 +12,7 @@ export default bottomTabBarRoutes = [
     name: BOTTOM_TAB_ROUTES.STACK_ROUTES,
     component: HomeNavigation,
     options: {
+      headerShown: false,
       tabBarIcon: ({ focused, color, size }) => {
         return focused ? (
           <CustomIcon iconName="home" color="blue.500" />

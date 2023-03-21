@@ -9,9 +9,6 @@ export default HomeNavigation = () => {
   return (
     <Stack.Navigator
       initialRouteName={HOME_ROUTES.HOME}
-      screenOptions={{
-        headerShown: false,
-      }}
     >
       {
         homeRoutes.map((route, index) => {
