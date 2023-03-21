@@ -1,0 +1,3 @@
+
+const postCreatePost = (data) => {
+};

@@ -5,11 +5,12 @@ export const AUTH_ROUTES = {
 }
 
 export const  BOTTOM_TAB_ROUTES = {
-    HOME: "HomeScreen",
+    HOME: "HomeNavigation",
     SEARCH: "SearchScreen",
     ADD: "AddScreen",
     NOTIFICATION: "NotificationScreen",
     MESSAGES: "MessagesScreen",
+    STACK_ROUTES: "StackRoutes",
 }
 
 export const  DRAWER_ROUTES = {
@@ -17,4 +18,9 @@ export const  DRAWER_ROUTES = {
     PROFILE: "ProfileScreen",
     SETTINGS: "SettingsScreen",
     LOGOUT: "Logout",
+}
+
+export const HOME_ROUTES = {
+    HOME : "HomeScreen",
+    CREATE_POST : "CreatePostScreen",
 }

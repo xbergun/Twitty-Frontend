@@ -7,4 +7,14 @@ export const apiConfig = {
     endPoint: "/auth/login",
     method: "POST",
   },
+  POSTS: {
+    GET_ALL_POSTS: {
+      endPoint: "/posts/all-posts",
+      method: "GET",
+    },
+    GET_POSTS_BY_USER : {
+      endPoint: "/posts/posts-by-user",
+      method: "GET",
+    },
+  }
 };

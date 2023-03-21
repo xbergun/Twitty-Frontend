@@ -12,7 +12,6 @@ const postLogin = async (requestBody) => {
   store.dispatch(getLoginRequest());
 
   const { endPoint } = apiConfig.LOGIN;
-  
 
   try {
     const response = await api.post(endPoint, requestBody);

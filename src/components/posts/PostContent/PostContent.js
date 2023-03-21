@@ -19,13 +19,16 @@ import styles from "./PostContent.styles";
 
 
 const PostContent = ({ post }) => {
+
+  const dummyImage = "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+
   return (
     <ScrollView
       style={styles.containerScrollView}
     >
       <HStack space={2}>
         <Image
-          source={{ uri: post?.user?.avatar }}
+          source={{ uri: dummyImage }}
           style={styles.userAvatar}
         />
         <VStack>

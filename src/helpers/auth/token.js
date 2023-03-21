@@ -19,12 +19,12 @@ const getToken = async () => {
     }
 }
 
-// const removeToken = async () => {
-//     try {
-//         await AsyncStorage.removeItem('@accessToken');
-//     } catch (error) {
-//         console.log(error);
-//     }
-// }
+const removeToken = async () => {
+    try {
+        await AsyncStorage.removeItem('@accessToken');
+    } catch (error) {
+        console.log(error);
+    }
+}
 
 export { setToken, getToken };

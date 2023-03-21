@@ -1,8 +1,9 @@
 import { DRAWER_ROUTES } from '../navigations/Constants';
 import BottomTabNavigation from '../navigations/BottomTabNavigation';
-import ProfileScreen from '../pages/profile/profileScreen';
-import SettingsScreen from '../pages/settings/settingsScreen';
+import ProfileScreen from '../screens/profile/profileScreen';
+import SettingsScreen from '../screens/settings/settingsScreen';
 import CustomIcon from '../components/customComponents/CustomIcon';
+import AppStackNavigation from '../navigations/HomeNavigation';
 
 
 export default drawerRoutes = [
@@ -12,7 +13,6 @@ export default drawerRoutes = [
         options : {
             drawerLabel : "Home",
             drawerIcon : ({}) =><CustomIcon  iconName="home" />,
-            headerTitle: "Home Page"
         }
     },
     {
@@ -38,6 +38,6 @@ export default drawerRoutes = [
             drawerLabel : "Logout",
             drawerIcon : ({}) =><CustomIcon  iconName="logout" />
         }
-    }
+    },
 
 ];
