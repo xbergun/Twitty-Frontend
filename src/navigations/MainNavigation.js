@@ -7,5 +7,7 @@ import DrawerNavigation from "./DrawerNavigation";
 export default MainNavigation = () => {
   const { userData } = useSelector((state) => state.auth);
 
-  return <>{userData ? <DrawerNavigation /> : <AuthNavigation />}</>;
+  return <>{userData ? (
+    <DrawerNavigation />
+    ) : <AuthNavigation />}</>;
 };

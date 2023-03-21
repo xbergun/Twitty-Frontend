@@ -7,7 +7,7 @@ import { API_STATUS } from "../../common/enums/apiEnums";
 import Loading from "../../components/loading/Loading";
 import CreatePostButton from "../../components/posts/CreatePost/CreatePostButton";
 
-const HomeScreen = () => {
+const HomeScreen = ({navigation}) => {
   const { allPostsData, getAllPostApiStatus } = useSelector(
     (state) => state?.posts
   );
@@ -25,7 +25,7 @@ const HomeScreen = () => {
       }}
     >
       <Posts posts={allPostsData.data} />
-      <CreatePostButton />
+      <CreatePostButton navigation={navigation} />
     </View>
   );
 };

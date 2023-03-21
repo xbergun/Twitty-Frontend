@@ -3,13 +3,21 @@ import React from "react";
 import { TouchableOpacity } from "react-native";
 import { Icon } from "native-base";
 import CustomIcon from "../../customComponents/CustomIcon";
+import { useSelector } from "react-redux";
+import { HOME_ROUTES } from "../../../navigations/Constants";
 
-const CreatePostButton = () => {
+const CreatePostButton = ({ navigation }) => {
+  const { userData } = useSelector((state) => state?.auth);
+
+  const handleGoCreatePostScreen = () => {
+    navigation.navigate(HOME_ROUTES.CREATE_POST, { userData });
+  };
+
   return (
     <TouchableOpacity
-     style={styles.container}
-    onPress={() => console.log("Create Post")}
-      >
+      style={styles.container}
+      onPress={handleGoCreatePostScreen}
+    >
       <CustomIcon iconName="add" color="white" />
     </TouchableOpacity>
   );

@@ -4,13 +4,14 @@ import SearchScreen from "../screens/search/searchScreen";
 import CustomIcon from "../components/customComponents/CustomIcon";
 import NotificationScreen from "../screens/notifications/NotificationScreen";
 import MessagesScreen from "../screens/messages/MessagesScreen";
+import AppStackNavigation from '../navigations/HomeNavigation';
+import HomeNavigation from "../navigations/HomeNavigation";
 
 export default bottomTabBarRoutes = [
   {
-    name: BOTTOM_TAB_ROUTES.HOME,
-    component: HomeScreen,
+    name: BOTTOM_TAB_ROUTES.STACK_ROUTES,
+    component: HomeNavigation,
     options: {
-      headerTitle: "Home",
       tabBarIcon: ({ focused, color, size }) => {
         return focused ? (
           <CustomIcon iconName="home" color="blue.500" />
