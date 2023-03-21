@@ -5,6 +5,7 @@ import Posts from "../../components/posts/Posts";
 import { getAllPost } from "../../common/api/posts/getAllPost";
 import { API_STATUS } from "../../common/enums/apiEnums";
 import Loading from "../../components/loading/Loading";
+import CreatePostButton from "../../components/posts/CreatePost/CreatePostButton";
 
 const HomeScreen = () => {
   const { allPostsData, getAllPostApiStatus } = useSelector(
@@ -24,6 +25,7 @@ const HomeScreen = () => {
       }}
     >
       <Posts posts={allPostsData.data} />
+      <CreatePostButton />
     </View>
   );
 };

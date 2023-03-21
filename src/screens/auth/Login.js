@@ -36,9 +36,6 @@ const Login = ({ navigation ,route}) => {
   
   //useSelector
   const {loginStatus, userData} = useSelector((state) => state?.auth);  
-
-  console.log("userData", userData)
-  console.log("loginStatus", loginStatus)
   
   //useState
   const [username, setUsername] = useState("");
@@ -68,7 +65,7 @@ const Login = ({ navigation ,route}) => {
 
   return (
     <>
-    {message && alert("Kayıt Başarılı") }
+    {message && alert("Register Succesfully") }
     {loginStatus == API_STATUS.REQUEST ? <Loading /> : (
     <VStack display="flex" flex={1} bg="white">
       <Text fontSize="40" alignSelf="flex-start" ml={10} my={2} bold>
