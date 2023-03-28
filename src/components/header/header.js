@@ -1,10 +1,41 @@
-const header = ({
+import { View } from 'react-native';
+
+
+const Header = ({
     title,
     subtitle,
     image,
     imageAlt,
     imagePosition,
-    children
+    children,
+    rightComponent,
+    leftComponent,
+    centerComponent,
 }) => {
-    return 1
+    return (
+        <>
+            {
+                title && <Text style={styles.title}>{title}</Text>
+            }
+
+            {
+                subtitle && <Text style={styles.subtitle}>{subtitle}</Text>
+            }
+            {
+                rightComponent && <View style={styles.rightComponent}>{rightComponent}</View>
+            }
+
+            {
+                leftComponent && <View style={styles.leftComponent}>{leftComponent}</View>
+            }
+
+            {
+                centerComponent && <View style={styles.centerComponent}>{centerComponent}</View>
+            }
+            
+        </>
+    )
 }
+
+
+export default Header;
