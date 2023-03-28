@@ -16,21 +16,27 @@ import {
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
 import styles from "./PostContent.styles";
+import { useNavigation } from "@react-navigation/native";
 
 
 const PostContent = ({ post }) => {
+  const dummyImage =
+    "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80";
+  const navigation = useNavigation();
 
-  const dummyImage = "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+
+  const handleGoToProfile = () => {
+    navigation.navigate("ProfileScreen", { user: post?.user });
+  };
 
   return (
-    <ScrollView
-      style={styles.containerScrollView}
-    >
+    <ScrollView style={styles.containerScrollView}>
       <HStack space={2}>
-        <Image
-          source={{ uri: dummyImage }}
-          style={styles.userAvatar}
-        />
+        <TouchableOpacity
+          onPress={handleGoToProfile}
+        >
+          <Image source={{ uri: dummyImage }} style={styles.userAvatar} />
+        </TouchableOpacity>
         <VStack>
           <HStack space={2}>
             <Text
@@ -63,4 +69,3 @@ const PostContent = ({ post }) => {
 };
 
 export default PostContent;
-

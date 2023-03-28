@@ -2,14 +2,17 @@ import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { useSelector } from 'react-redux';
 
-const ProfileScreen = () => {
+const ProfileScreen = ({route}) => {
 
-    const {userData} = useSelector(state => state.auth)
+  const {_id, name,username} = route.params.user;
+
+    console.log(route.params)
 
   return (
     <View>
-    
-      <Text>ProfileScreen</Text>
+      <Text>{_id}</Text>
+      <Text>{name}</Text>
+      <Text>{username}</Text>
     </View>
   )
 }
