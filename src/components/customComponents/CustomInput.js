@@ -14,6 +14,7 @@ const CustomInput = ({
   InputRightElement,
   InputLeftElement,
   pl,
+  style
 }) => {
   return (
     <FormControl>
@@ -30,6 +31,7 @@ const CustomInput = ({
         InputLeftElement={InputLeftElement}
         onChangeText={onChangeText}
         value={value}
+        style={style}
       />
     </FormControl>
   );

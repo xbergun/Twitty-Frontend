@@ -5,6 +5,7 @@ const initialState = {
   allPostsData: [],
 
   getAllPostApiStatus: API_STATUS.NONE,
+  postCreatePostApiStatus : API_STATUS.NONE,
 };
 
 const AuthSlice = createSlice({
@@ -22,6 +23,17 @@ const AuthSlice = createSlice({
       state.getAllPostApiStatus = API_STATUS.FAILURE;
       state.allPostsData = [];
     },
+
+    postCreatePostRequest: (state) => {
+      state.postCreatePostApiStatus = API_STATUS.REQUEST;
+    },
+    postCreatePostSuccess: (state, action) => {
+      state.postCreatePostApiStatus = API_STATUS.SUCCESS;
+    },
+    postCreatePostFailure: (state) => {
+      state.postCreatePostApiStatus = API_STATUS.FAILURE;
+    },
+
   },
 });
 
@@ -29,6 +41,10 @@ export const {
     getAllPostsRequest,
     getAllPostsSuccess,
     getAllPostsFailure,
+
+    postCreatePostRequest,
+    postCreatePostSuccess,
+    postCreatePostFailure,
 } = AuthSlice.actions;
 
 export default AuthSlice.reducer;

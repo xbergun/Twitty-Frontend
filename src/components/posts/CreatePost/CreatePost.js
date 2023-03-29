@@ -1,71 +1,63 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, TextInput, Button, Alert } from 'react-native';
+import { Text, View, StyleSheet, TextInput, Alert } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 import Constants from 'expo-constants';
+import { useSelector } from 'react-redux';
+import postCreatePost from '../../../common/api/posts/postCreatePost';
+import CustomInput from '../../customComponents/CustomInput';
+import CustomButton from '../../customComponents/CustomButton';
+import { Button } from 'native-base';
+import { useNavigation } from '@react-navigation/native';
+import Toast from 'react-native-toast-message';
 
 export default function CreatePost() {
-  const { register, setValue, handleSubmit, control, reset, formState: { errors } } = useForm();
-  const onSubmit = data => {
-    console.log(data);
+  const [description, setDescription] = React.useState('');
+
+  const navigation = useNavigation();
+
+  const handleCreatePost = async () => {
+    postCreatePost(description).then(() => {
+      Toast.show({
+        type: 'success',
+        position: 'top',
+        text1: 'Post created',
+        visibilityTime: 4000,
+        autoHide: true,
+        topOffset: 30,
+        bottomOffset: 40,
+      });
+      navigation.goBack();
+    }).catch((err) => {
+      Alert.alert('Error creating post');
+      console.log(err);
+    } );
   };
-   
-  const onError= (errors, e) => {
-    return console.log(errors)
-  }
 
   return (
     <View style={styles.container}>
-      <Text style={styles.label}>First name</Text>
-      <Controller
-        control={control}
-        render={({field: { onChange, onBlur, value }}) => (
-          <TextInput
-            style={styles.input}
-            onBlur={onBlur}
-            onChangeText={value => onChange(value)}
-            value={value}
-          />
-        )}
-        name="email"
-        rules={{ required: true }}
-      />
-      <Text style={styles.label}>Last name</Text>
-      <Controller
-        control={control}
-        render={({field: { onChange, onBlur, value }}) => (
-          <TextInput
-            style={styles.input}
-            onBlur={onBlur}
-            onChangeText={value => onChange(value)}
-            value={value}
-          />
-        )}
-        name="password"
-        rules={{ required: true }}
-      />
+      <CustomInput
+        label="description"
+        placeholder="Description"
+        onChangeText={text => setDescription(text)}
+        value={description}
+        style={{
+          height: 200, width: 300, marginLeft: 10, marginTop: 10,
 
-      <View style={styles.button}>
-        <Button
-          style={styles.buttonInner}
-          color
-          title="Reset"
-          onPress={() => {
-            reset({
-              email: 'jane@example.com',
-              password: '****'
-            })
-          }}
-        />
-      </View>
+        }}
+      />
+      <Button
+        style={{
+          height: 50,
+          margin: 40,
+          backgroundColor: '#4C9EEB',
 
-      <View style={styles.button}>
-        <Button
-          style={styles.buttonInner}
-          color
-          title="Send"
-          onPress={handleSubmit(onSubmit)}
-        />
-      </View>
+        }}
+
+        onPress={handleCreatePost}
+      >
+        <Text style={{ color: 'white', fontSize: 20, fontWeight: 'bold' }}>Create Post</Text>
+      </Button>
+
     </View>
   );
 };
@@ -74,30 +66,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    paddingTop: Constants.statusBarHeight,
+    backgroundColor: 'white',
     padding: 8,
-    backgroundColor: 'white',
-  },
-  input: {
-    backgroundColor: 'white',
-    borderWidth: 1,
-    borderColor: 'black',
-    height: 40,
-    padding: 10,
-    borderRadius: 4,
+    
   },
 
-  button: {
-    marginTop: 40,
-    color: 'white',
-    height: 40,
-    backgroundColor: '#ec5990',
-    borderRadius: 4,
-  },
-  label: {
-    color: 'black',
-    margin: 20,
-    marginLeft: 0,
-  },
-  
+
 });
