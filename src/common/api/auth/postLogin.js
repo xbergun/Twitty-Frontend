@@ -12,10 +12,10 @@ import CustomToast from '../../../components/toast/CustomToast';
 const postLogin = async (requestBody) => {
   store.dispatch(getLoginRequest());
 
-  const { endPoint } = apiConfig.LOGIN;
+  const { endPoint,method } = apiConfig.LOGIN;
 
   try {
-    const response = await apiCall("post", endPoint, null, requestBody,null);
+    const response = await apiCall(method, endPoint, null, requestBody,null);
     store.dispatch(getLoginSuccess(response.data));
     CustomToast()
   } catch (error) {

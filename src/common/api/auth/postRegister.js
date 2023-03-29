@@ -13,14 +13,14 @@ import { useNavigation } from "@react-navigation/native";
 const postRegister = async (requestBody) => {
   store.dispatch(getRegisterRequest());
 
-  const { endPoint } = apiConfig.REGISTER;
+  const { endPoint, method } = apiConfig.REGISTER;
 
   const headers = {
     "Content-Type": "application/json",
   };
 
   try {
-    const response = await apiCall("post", endPoint, headers, requestBody, null);
+    const response = await apiCall(method, endPoint, headers, requestBody, null);
     store.dispatch(getRegisterSuccess(response.data));
     CustomToast()
   }

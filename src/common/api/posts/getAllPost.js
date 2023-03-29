@@ -13,7 +13,7 @@ import apiCall from "../apiCall";
 export const getAllPost = async () => {
   store.dispatch(getAllPostsRequest());
 
-  const { endPoint } = apiConfig.POSTS.GET_ALL_POSTS;
+  const { endPoint , method} = apiConfig.POSTS.GET_ALL_POSTS;
 
   const token = await getToken();
 
@@ -23,7 +23,7 @@ export const getAllPost = async () => {
   };
 
   try {
-    const response = await apiCall("get", endPoint, headers);
+    const response = await apiCall(method, endPoint, headers);
     store.dispatch(getAllPostsSuccess(response.data));
   } catch (err) {
     store.dispatch(getAllPostsFailure());

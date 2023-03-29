@@ -13,7 +13,7 @@ export default postCreatePost = async (description) => {
 
     const userData = store.getState().auth.userData.user;
 
-    const { endPoint } = apiConfig.POSTS.CREATE_POST;
+    const { endPoint ,method} = apiConfig.POSTS.CREATE_POST;
 
     const token = await getToken();
 
