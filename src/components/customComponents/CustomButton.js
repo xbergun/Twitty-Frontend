@@ -14,6 +14,7 @@ const CustomButton = ({
   mx,
   buttonTextStyle,
   mt,
+  style
 }) => {
   return (
     <Button
@@ -28,6 +29,7 @@ const CustomButton = ({
       onPress={onPressHandler}
       mx={mx}
       mt={mt}
+      style={style}
     >
       {buttonText}
     </Button>

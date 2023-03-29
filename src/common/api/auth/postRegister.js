@@ -1,4 +1,4 @@
-import { apiCall } from "../apiCall";
+import apiCall from "../apiCall";
 import { apiConfig } from "../apiConfig";
 import { store } from "../../../redux/store";
 import {
@@ -7,20 +7,27 @@ import {
   getRegisterSuccess,
 } from "../../../redux/slices/AuthSlice";
 import api from "../api";
+import CustomToast from '../../../components/toast/CustomToast';
+import { useNavigation } from "@react-navigation/native";
 
-const postRegister = async (requestBody,navigation) => {
+const postRegister = async (requestBody) => {
   store.dispatch(getRegisterRequest());
 
-  try {
-    const response = await api.post(apiConfig.REGISTER.endPoint, requestBody);
-    if (response.status === 200) {
-      store.dispatch(getRegisterSuccess());
-      navigation.navigate("Login", { message: "Register Success" });
-    }
+  const { endPoint, method } = apiConfig.REGISTER;
 
-  } catch (error) {
+  const headers = {
+    "Content-Type": "application/json",
+  };
+
+  try {
+    const response = await apiCall(method, endPoint, headers, requestBody, null);
+    store.dispatch(getRegisterSuccess(response.data));
+    CustomToast()
+  }
+  catch (error) {
     store.dispatch(getRegisterFailure());
-    alert(error);
+    CustomToast( "error", "Error", "Something went wrong")
+
   }
 };
 

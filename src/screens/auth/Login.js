@@ -20,7 +20,6 @@ import {
 } from "@expo/vector-icons";
 
 import CustomButton from "../../components/customComponents/CustomButton";
-import CustomToast from "../../components/customComponents/CustomToast.js";
 import CustomIcon from "../../components/customComponents/CustomIcon";
 import CustomInput from "../../components/customComponents/CustomInput";
 import postLogin from "../../common/api/auth/postLogin";

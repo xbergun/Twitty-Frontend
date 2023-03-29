@@ -16,5 +16,9 @@ export const apiConfig = {
       endPoint: "/posts/posts-by-user",
       method: "GET",
     },
+    CREATE_POST: {
+      endPoint: "/posts/create-post",
+      method: "POST",
+    },
   }
 };

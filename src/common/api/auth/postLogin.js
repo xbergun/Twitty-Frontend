@@ -5,20 +5,22 @@ import {
   getLoginSuccess,
   getLoginFailure,
 } from "../../../redux/slices/AuthSlice";
-import api from "../api";
-import { setToken } from "../../../helpers/auth/token";
+import apiCall from "../apiCall";
+import CustomToast from '../../../components/toast/CustomToast';
+
 
 const postLogin = async (requestBody) => {
   store.dispatch(getLoginRequest());
 
-  const { endPoint } = apiConfig.LOGIN;
+  const { endPoint,method } = apiConfig.LOGIN;
 
   try {
-    const response = await api.post(endPoint, requestBody);
+    const response = await apiCall(method, endPoint, null, requestBody,null);
     store.dispatch(getLoginSuccess(response.data));
+    CustomToast()
   } catch (error) {
-    console.log(error);
     store.dispatch(getLoginFailure());
+    CustomToast( "error", "Error", "Something went wrong")
   }
 };
 
