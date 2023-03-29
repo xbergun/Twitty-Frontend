@@ -11,7 +11,7 @@ export default function App() {
       <NavigationContainer>
         <NativeBaseProvider>
           <MainNavigation />
-          <Toast  />
+          <Toast/>
         </NativeBaseProvider>
       </NavigationContainer>
     </Provider>

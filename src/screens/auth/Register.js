@@ -36,8 +36,7 @@ const Register = ({ navigation }) => {
       email,
       password,
     };
-
-    await postRegister(requestBody, navigation);
+    await postRegister(requestBody);
   };
 
   return (

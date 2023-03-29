@@ -4,12 +4,12 @@ import { postCreatePostFailure, postCreatePostRequest, postCreatePostSuccess } f
 import { store } from '../../../redux/store';
 import api from '../api';
 import { apiConfig } from '../apiConfig';
+import Toast  from 'react-native-toast-message';
+import CustomToast from '../../../components/toast/CustomToast';
 
 
 export default postCreatePost = async (description) => {
     store.dispatch(postCreatePostRequest())
-
-    console.log(description)
 
     const userData = store.getState().auth.userData.user;
 
@@ -30,14 +30,12 @@ export default postCreatePost = async (description) => {
     };
 
 
-    try {
-        await api.post(endPoint, body, { headers });
+    const response = await api.post(endPoint, body, { headers });
+
+    if (response.status === 200) {
         store.dispatch(postCreatePostSuccess());
-    } catch (err) {
+    } else {
         store.dispatch(postCreatePostFailure());
-        console.log("err", err);
     }
-
-
 
 };

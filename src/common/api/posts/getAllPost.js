@@ -8,6 +8,7 @@ import {
   getAllPostsFailure,
 } from "../../../redux/slices/PostsSlice";
 import { store } from "../../../redux/store";
+import apiCall from "../apiCall";
 
 export const getAllPost = async () => {
   store.dispatch(getAllPostsRequest());
@@ -22,9 +23,10 @@ export const getAllPost = async () => {
   };
 
   try {
-    const response = await api.get(endPoint, { headers });
+    const response = await apiCall("get", endPoint, headers);
     store.dispatch(getAllPostsSuccess(response.data));
   } catch (err) {
     store.dispatch(getAllPostsFailure());
+    console.log(err);
   }
 };

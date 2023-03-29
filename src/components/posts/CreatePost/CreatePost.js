@@ -9,28 +9,17 @@ import CustomButton from '../../customComponents/CustomButton';
 import { Button } from 'native-base';
 import { useNavigation } from '@react-navigation/native';
 import Toast from 'react-native-toast-message';
+import CustomToast from '../../toast/CustomToast';
+import { TOAST_TYPES } from '../../../common/enums/toastEnums';
 
 export default function CreatePost() {
+
   const [description, setDescription] = React.useState('');
 
   const navigation = useNavigation();
 
-  const handleCreatePost = async () => {
-    postCreatePost(description).then(() => {
-      Toast.show({
-        type: 'success',
-        position: 'top',
-        text1: 'Post created',
-        visibilityTime: 4000,
-        autoHide: true,
-        topOffset: 30,
-        bottomOffset: 40,
-      });
-      navigation.goBack();
-    }).catch((err) => {
-      Alert.alert('Error creating post');
-      console.log(err);
-    } );
+  const handleCreatePost =  () => {
+    postCreatePost(description)
   };
 
   return (

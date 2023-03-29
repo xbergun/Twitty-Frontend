@@ -12,6 +12,12 @@ const AuthSlice = createSlice({
   name: "posts",
   initialState,
   reducers: {
+
+    clearApiStatus: (state) => {
+      state.getAllPostApiStatus = API_STATUS.NONE;
+      state.postCreatePostApiStatus = API_STATUS.NONE;
+    }, 
+
     getAllPostsRequest: (state) => {
       state.getAllPostApiStatus = API_STATUS.REQUEST;
     },
@@ -45,6 +51,8 @@ export const {
     postCreatePostRequest,
     postCreatePostSuccess,
     postCreatePostFailure,
+
+    clearApiStatus,
 } = AuthSlice.actions;
 
 export default AuthSlice.reducer;
