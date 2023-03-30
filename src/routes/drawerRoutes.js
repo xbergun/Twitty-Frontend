@@ -1,9 +1,8 @@
 import { DRAWER_ROUTES } from '../navigations/Constants';
 import BottomTabNavigation from '../navigations/BottomTabNavigation';
 import ProfileScreen from '../screens/profile/ProfileScreen';
-import SettingsScreen from '../screens/settings/settingsScreen';
+import SettingsScreen from '../screens/settings/SettingsScreen';
 import CustomIcon from '../components/customComponents/CustomIcon';
-import AppStackNavigation from '../navigations/HomeNavigation';
 
 
 export default drawerRoutes = [

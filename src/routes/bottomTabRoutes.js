@@ -1,6 +1,5 @@
 import { BOTTOM_TAB_ROUTES } from "../navigations/Constants";
-import HomeScreen from "../screens/home/HomeScreen";
-import SearchScreen from "../screens/search/searchScreen";
+import SearchScreen from "../screens/search/SearchScreen";
 import CustomIcon from "../components/customComponents/CustomIcon";
 import NotificationScreen from "../screens/notifications/NotificationScreen";
 import MessagesScreen from "../screens/messages/MessagesScreen";
