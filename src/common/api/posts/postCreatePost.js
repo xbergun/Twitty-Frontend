@@ -2,10 +2,9 @@
 import { getToken } from '../../../helpers/auth/token';
 import { postCreatePostFailure, postCreatePostRequest, postCreatePostSuccess } from '../../../redux/slices/PostsSlice';
 import { store } from '../../../redux/store';
-import api from '../api';
 import { apiConfig } from '../apiConfig';
-import Toast  from 'react-native-toast-message';
 import CustomToast from '../../../components/toast/CustomToast';
+import apiCall from '../apiCall';
 
 
 export default postCreatePost = async (description) => {
@@ -29,13 +28,18 @@ export default postCreatePost = async (description) => {
         userId: userData._id,
     };
 
+    const response = await apiCall(method, endPoint, headers, body);
 
-    const response = await api.post(endPoint, body, { headers });
+    console.log(response)
 
     if (response.status === 200) {
-        store.dispatch(postCreatePostSuccess());
-    } else {
-        store.dispatch(postCreatePostFailure());
+        store.dispatch(postCreatePostSuccess(response.data));
+        CustomToast();
     }
+    else {
+        store.dispatch(postCreatePostFailure());
+        CustomToast('Something went wrong', 'error');
+    }
+    
 
 };
