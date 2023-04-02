@@ -6,73 +6,80 @@ import { useSelector } from "react-redux";
 import postRegister from "../../common/api/auth/postRegister";
 import { API_STATUS } from "../../common/enums/apiEnums";
 import i18n from "../../common/localization/i18n";
+import InputField from "../../components/forms/InputField";
+import { useForm } from "react-hook-form";
+import CustomToast from "../../components/toast/CustomToast";
 
 const Register = ({ navigation }) => {
-  const [name, setName] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-
+  const { control, handleSubmit } = useForm();
   // const toast = useToast();
-
 
   const onRegisterHandler = () => {
     navigation.navigate("Login");
   };
 
-  const onLoginHandler = () => {
-    if (password !== confirmPassword) {
-      alert("Password and Confirm Password must be same");
-    } else {
-      registerHandler();
-    }
-  };
+  const registerHandler = async (data) => {
+    const { name, username, email, password, confirmPassword } = data;
 
-  const registerHandler = async () => {
+    if (password !== confirmPassword) {
+      return CustomToast("error", "Password and Confirm Password must be same");
+    }
+
     const requestBody = {
       name,
       username,
       email,
       password,
     };
+
     await postRegister(requestBody);
   };
 
   return (
     <VStack display="flex" flex={1} bg="white">
-      <Text fontSize="40" alignSelf="flex-start" ml={10} my={2} bold>
+      <Text fontSize={40} alignSelf="flex-start" ml={10} my={2} bold>
         {i18n.t("Register.LetsRegister")}
       </Text>
-      <Text fontSize="25" alignSelf="flex-start" ml={10}>
+      <Text fontSize={25} alignSelf="flex-start" ml={10}>
         {i18n.t("Register.Hello")}
       </Text>
-      <Text fontSize="25" alignSelf="flex-start" ml={10}>
+      <Text fontSize={25} alignSelf="flex-start" ml={10}>
         {i18n.t("Register.Great")}
       </Text>
 
-      <CustomInput 
-      labelName={i18n.t("Input.Name")}
-      onChangeText={setName} 
-      value={name} />
-      
-      <CustomInput
-        labelName={i18n.t("Input.Username")}
-        onChangeText={setUsername}
-        value={username}
+      <InputField
+        name={"name"}
+        control={control}
+        placeholder={i18n.t("Input.Name")}
+        rules={{ required: true, minLength: 5 }}
       />
-      <CustomInput labelName="Email" onChangeText={setEmail} value={email} />
-      <CustomInput
-        labelName={i18n.t("Input.Password")}
-        onChangeText={setPassword}
-        value={password}
-        type="password"
+
+      <InputField
+        name={"username"}
+        control={control}
+        placeholder={i18n.t("Input.Username")}
+        rules={{ required: true, minLength: 5 }}
       />
-      <CustomInput
-        labelName={i18n.t("Input.ConfirmPassword")}
-        onChangeText={setConfirmPassword}
-        value={confirmPassword}
-        type="password"
+
+      <InputField
+        name={"email"}
+        control={control}
+        placeholder={i18n.t("Input.Email")}
+        rules={{ required: true, minLength: 5 }}
+      />
+
+      <InputField
+        name={"password"}
+        control={control}
+        placeholder={i18n.t("Input.Password")}
+        rules={{ required: true, minLength: 5 }}
+      />
+
+      <InputField
+        name={"confirmPassword"}
+        control={control}
+        placeholder={i18n.t("Input.ConfirmPassword")}
+        rules={{ required: true, minLength: 5 }}
       />
 
       <CustomButton
@@ -83,7 +90,7 @@ const Register = ({ navigation }) => {
         buttonBg={"black"}
         buttonTextStyle={{ fontWeight: "bold", fontSize: 20 }}
         mx={"10%"}
-        onPressHandler={onLoginHandler}
+        onPressHandler={handleSubmit(registerHandler)}
       />
       <HStack
         display="flex"
@@ -92,9 +99,9 @@ const Register = ({ navigation }) => {
         mt="8%"
       >
         <Text alignSelf="center" fontSize={17}>
-        {i18n.t("Register.AlreadyHaveAccount")} 
+          {i18n.t("Register.AlreadyHaveAccount")}
           <Text bold onPress={onRegisterHandler} fontSize={18}>
-          {i18n.t("Register.Login")}
+            {i18n.t("Register.Login")}
           </Text>
         </Text>
       </HStack>

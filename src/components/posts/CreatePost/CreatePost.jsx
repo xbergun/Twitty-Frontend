@@ -13,9 +13,7 @@ export default function CreatePost() {
   const navigation = useNavigation();
 
   function handleCreatePost(description) {
-    const jsonDescription = JSON.stringify(description);
-
-    postCreatePost(jsonDescription).then(() => {
+    postCreatePost(description).then(() => {
       navigation.navigate("HomeScreen");
     });
   }

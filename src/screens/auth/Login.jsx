@@ -49,6 +49,10 @@ const Login = ({ navigation, route }) => {
     await postLogin(requestBody);
   };
 
+  const rightIconOnPress = () => {
+    setShow(!show);
+  };
+
   return (
     <>
       {message && alert("Register Succesfully")}
@@ -72,6 +76,8 @@ const Login = ({ navigation, route }) => {
               rules={{ required: true, minLength: 5 }}
               placeholder={i18n.t("Input.Username")}
               style={styles.input}
+              inputLeftElement
+              leftIconName={"account-circle"}
             />
 
             <InputField
@@ -81,6 +87,11 @@ const Login = ({ navigation, route }) => {
               placeholder={i18n.t("Input.Password")}
               style={styles.input}
               secureTextEntry={show ? false : true}
+              inputLeftElement
+              leftIconName={"lock"}
+              inputRightElement
+              rightIconName={show ? "visibility" : "visibility-off"}
+              rightIconOnPress={rightIconOnPress}
             />
           </View>
 

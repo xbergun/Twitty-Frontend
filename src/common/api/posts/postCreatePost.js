@@ -22,15 +22,12 @@ export default postCreatePost = async (description) => {
         Authorization: `Bearer: ${token}`,
     };
 
+   
 
-    const body = {
-        description,
-        userId: userData._id,
-    };
+    console.log(body)
 
     const response = await apiCall(method, endPoint, headers, body);
 
-    console.log(response)
 
     if (response.status === 200) {
         store.dispatch(postCreatePostSuccess(response.data));
