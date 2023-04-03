@@ -1,10 +1,9 @@
-
-import { getToken } from '../../../helpers/auth/token';
 import { postCreatePostFailure, postCreatePostRequest, postCreatePostSuccess } from '../../../redux/slices/PostsSlice';
 import { store } from '../../../redux/store';
 import { apiConfig } from '../apiConfig';
 import CustomToast from '../../../components/toast/CustomToast';
 import apiCall from '../apiCall';
+import getHeaders from '../getHeaders';
 
 
 export default postCreatePost = async (description) => {
@@ -14,19 +13,9 @@ export default postCreatePost = async (description) => {
 
     const { endPoint ,method} = apiConfig.POSTS.CREATE_POST;
 
-    const token = await getToken();
+    const headers = await getHeaders(true)
 
-
-    const headers = {
-        "Content-Type": "application/json",
-        Authorization: `Bearer: ${token}`,
-    };
-
-   
-
-    console.log(body)
-
-    const response = await apiCall(method, endPoint, headers, body);
+    const response = await apiCall(method, endPoint, headers, description);
 
 
     if (response.status === 200) {

@@ -1,6 +1,7 @@
 import { getToken } from "../../../helpers/auth/token";
 import { apiConfig } from "../apiConfig";
 import api from "../api";
+import getHeaders from "../getHeaders";
 
 const getPostsByUser = async (userId) => {
   let { endPoint } = apiConfig.POSTS.GET_POSTS_BY_USER;
@@ -9,10 +10,7 @@ const getPostsByUser = async (userId) => {
 
   const token = await getToken();
 
-  const headers = {
-    "Content-Type": "application/json",
-    Authorization: `Bearer: ${token}`,
-  };
+  const headers = await getHeaders(true)
 
   try {
     const response = await api.get(endPoint, { headers });

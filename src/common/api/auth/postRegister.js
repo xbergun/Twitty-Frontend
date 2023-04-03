@@ -9,15 +9,14 @@ import {
 import api from "../api";
 import CustomToast from '../../../components/toast/CustomToast';
 import { useNavigation } from "@react-navigation/native";
+import getHeaders from "../getHeaders";
 
 const postRegister = async (requestBody) => {
   store.dispatch(getRegisterRequest());
 
   const { endPoint, method } = apiConfig.REGISTER;
 
-  const headers = {
-    "Content-Type": "application/json",
-  };
+ const headers = await getHeaders()
 
   try {
     const response = await apiCall(method, endPoint, headers, requestBody, null);
