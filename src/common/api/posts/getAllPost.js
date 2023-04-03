@@ -1,6 +1,4 @@
-import { getToken } from "../../../helpers/auth/token";
 import { apiConfig } from "../apiConfig";
-import api from "../api";
 
 import {
   getAllPostsRequest,
@@ -9,18 +7,16 @@ import {
 } from "../../../redux/slices/PostsSlice";
 import { store } from "../../../redux/store";
 import apiCall from "../apiCall";
+import getHeaders from "../getHeaders";
 
 export const getAllPost = async () => {
   store.dispatch(getAllPostsRequest());
 
   const { endPoint , method} = apiConfig.POSTS.GET_ALL_POSTS;
 
-  const token = await getToken();
 
-  const headers = {
-    "Content-Type": "application/json",
-    Authorization: `Bearer: ${token}`,
-  };
+  const headers = await getHeaders(true);
+
 
   try {
     const response = await apiCall(method, endPoint, headers);

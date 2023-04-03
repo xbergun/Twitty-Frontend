@@ -20,5 +20,9 @@ export const apiConfig = {
       endPoint: "/posts/create-post",
       method: "POST",
     },
+    LIKE_AND_UNLIKE_POST: {
+      endPoint: "/posts/like-post/",
+      method: "GET",
+    },
   }
 };
