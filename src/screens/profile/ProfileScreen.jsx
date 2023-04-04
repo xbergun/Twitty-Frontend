@@ -4,6 +4,7 @@ import { SafeAreaView } from 'react-native';
 import { VStack, HStack, Button } from 'native-base';
 import styles from './ProfileScreen.style';
 import { TouchableOpacity } from 'react-native';
+import { useSelector } from 'react-redux';
 
 const DUMMY_IMAGE = "https://images.unsplash.com/photo-1449034446853-66c86144b0ad?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8NXx8fGVufDB8fHx8&w=1000&q=80"
 
@@ -12,7 +13,9 @@ const dummyAvatar =
 
 const ProfileScreen = ({ route }) => {
 
-  let { _id, name, username, avatar, coverImage } = route.params.user;
+  const {user} = useSelector(state => state?.auth?.userData);
+
+  let { _id, name, username, avatar, coverImage } = route.params.user || user;
 
   avatar = avatar || dummyAvatar;
   coverImage = coverImage || DUMMY_IMAGE;

@@ -8,6 +8,7 @@ const initialState = {
   
   registerUserStatus: API_STATUS.NONE,
   loginStatus: API_STATUS.NONE,
+  logOutApiStatus : API_STATUS.NONE,
 };
 
 const AuthSlice = createSlice({
@@ -35,6 +36,17 @@ const AuthSlice = createSlice({
     getLoginFailure: (state) => {
       state.loginStatus = API_STATUS.FAILURE;
     },
+
+    getLogoutRequest: (state) => {
+      state.logOutApiStatus = API_STATUS.REQUEST;
+    },
+    getLogoutSuccess: (state) => {
+      state.logOutApiStatus = API_STATUS.SUCCESS;
+      state.userData = null;
+    },
+    getLogoutFailure: (state) => {
+      state.logOutApiStatus = API_STATUS.FAILURE;
+    },
   },
 });
 
@@ -45,6 +57,9 @@ export const {
   getLoginRequest,
   getLoginSuccess,
   getLoginFailure,
+  getLogoutRequest,
+  getLogoutSuccess,
+  getLogoutFailure,
 } = AuthSlice.actions;
 
 export default AuthSlice.reducer;

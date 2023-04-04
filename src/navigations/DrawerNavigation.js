@@ -1,13 +1,18 @@
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { Text } from "native-base";
 import drawerRoutes from "../routes/drawerRoutes";
+import CustomDrawerContent from "../components/card/CustomDrawerContent";
+
+
 
 
 const Drawer = createDrawerNavigator();
 
 export default DrawerNavigation = () => {
   return (
-    <Drawer.Navigator screenOptions={(route) => {
+    <Drawer.Navigator 
+      drawerContent={(props) => <CustomDrawerContent {...props} />}
+    screenOptions={(route) => {
       return {
         headerShown: true,
         drawerLabel: () => {

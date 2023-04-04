@@ -18,16 +18,13 @@ import {
 import styles from "./PostContent.styles";
 import { useNavigation } from "@react-navigation/native";
 import { useSelector } from "react-redux";
-
+import { getLikeUnLikePost } from "../../../common/api/posts/getLikeUnLikePost";
 
 const dummyImage =
-"https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80";
-
-
+  "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80";
 
 const PostContent = ({ post }) => {
-
-  const {userData} = useSelector((state) => state.auth);
+  const { userData } = useSelector((state) => state.auth);
 
   const navigation = useNavigation();
 
@@ -36,8 +33,7 @@ const PostContent = ({ post }) => {
   };
 
   const handleLikePost = () => {
-    console.log("Like Post" + post?._id);
-    console.log(userData.user._id);
+    getLikeUnLikePost(post._id);
   };
 
   return (
@@ -47,7 +43,7 @@ const PostContent = ({ post }) => {
           <Image source={{ uri: dummyImage }} style={styles.userAvatar} />
         </TouchableOpacity>
         <VStack>
-          <HStack space={2}>
+          <HStack space={1}>
             <Text
               style={{
                 fontWeight: "bold",
@@ -55,7 +51,7 @@ const PostContent = ({ post }) => {
             >
               {post?.user?.name}
             </Text>
-            <Text>{post?.user?.username}</Text>
+            <Text>@{post?.user?.username}</Text>
             <Text>{postDateFormat(post.createdAt)}</Text>
           </HStack>
           <Text>{post?.description}</Text>
@@ -65,9 +61,9 @@ const PostContent = ({ post }) => {
             </TouchableOpacity>
             <Text>{post?.likes ? post?.likes?.length : 0}</Text>
 
-            {
-              // Eklenmedi daha
-            }
+              
+            {/* API NOT READY YET */}
+
             {/* <TouchableOpacity onPress={handleCommentPost}>
               <Icon as={MaterialCommunityIcons} name="comment" size="sm" />
             </TouchableOpacity>
