@@ -3,6 +3,7 @@ import BottomTabNavigation from '../navigations/BottomTabNavigation';
 import ProfileScreen from '../screens/profile/ProfileScreen';
 import SettingsScreen from '../screens/settings/SettingsScreen';
 import CustomIcon from '../components/customComponents/CustomIcon';
+import SettingsNavigation from '../navigations/SettingsNavigation';
 
 
 export default drawerRoutes = [
@@ -26,10 +27,11 @@ export default drawerRoutes = [
     },
     {
         name: DRAWER_ROUTES.SETTINGS,
-        component: SettingsScreen,
+        component: SettingsNavigation,
         options : {
             drawerLabel : "Settings",
-            drawerIcon : ({}) =><CustomIcon  iconName="settings" />
+            drawerIcon : ({}) =><CustomIcon  iconName="settings" />,
+            headerShown: false,
         }
     },
 ]
