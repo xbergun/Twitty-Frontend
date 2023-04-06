@@ -8,12 +8,16 @@ import {
   Easing,
 } from "react-native";
 import React from "react";
-
+import { useColorMode, useTheme } from "native-base";
 const { width, height } = Dimensions.get("screen");
 
 const SlideItem = ({ item }) => {
   const translateYImage = new Animated.Value(0);
+  const theme = useTheme();
+  const { colorMode, toggleColorMode } = useColorMode();
 
+  console.log(theme.colors.mode[colorMode]?.text)
+  console.log("SlideItem -> theme", colorMode)
   Animated.timing(translateYImage, {
     toValue: 0,
     duration: 1000,
@@ -39,7 +43,9 @@ const SlideItem = ({ item }) => {
       />
 
       <View style={styles.content}>
-        <Text style={styles.title}>{item.title}</Text>
+        <Text style={[styles.title, {
+          color: theme.colors.mode[colorMode]?.text,
+        }]}>{item.title}</Text>
         <Text style={styles.description}>{item.description}</Text>
       </View>
     </View>
@@ -55,8 +61,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   image: {
-    flex: 0.4,
-    width: "100%",
+    flex: 0.5,
+    width: "80%",
   },
   content: {
     flex: 0.4,
@@ -65,12 +71,11 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: "bold",
-    color: "#333",
+    color: "white",
   },
   description: {
     marginHorizontal:"8%",
     fontSize: 18,
     marginVertical: 12,
-    color: "#333",
   },
 });
