@@ -11,8 +11,10 @@ const ChangeThemeButton = () => {
     toggleColorMode(!colorMode);
   };
 
-  const conditionColor = colorMode === "dark" ? "black" : "white";
-  const borderColor = colorMode === "dark" ? "white" : "black";
+  console.log(colorMode)
+
+  const conditionColor = colorMode === "dark" ? "white" : "black";
+  const borderColor = colorMode === "dark" ? "black" : "white";
 
   return (
     <TouchableOpacity
@@ -27,7 +29,7 @@ const ChangeThemeButton = () => {
     >
       <CustomIcon
         iconName="theme-light-dark"
-        color={colorMode === "dark" ? "white" : "black"}
+        color={colorMode === "dark" ? "black" : "white"}
         as={MaterialCommunityIcons}
       />
     </TouchableOpacity>

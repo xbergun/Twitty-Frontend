@@ -10,6 +10,7 @@ export const theme = extendTheme({
         text: "black",
         buttonBg: "black",
         sliderDot: "#000",
+        activeTintColor: "black",
       },
       dark: {
         primary: "#576CBC",
@@ -18,6 +19,7 @@ export const theme = extendTheme({
         text: "white",
         buttonBg: "#E26310",
         sliderDot: "#ccc",
+        activeTintColor: "#E26310",
       },
     },
   },
