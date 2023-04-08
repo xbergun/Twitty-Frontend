@@ -6,15 +6,11 @@ import i18n from "../../common/localization/i18n.js";
 import { useColorMode, useTheme } from "native-base";
 
 const FirstPage = ({ navigation }) => {
-  const { colorMode, toggleColorMode } = useColorMode();
+  const {colorMode} = useColorMode();
   const theme = useTheme();
 
-  console.log("colorMode", colorMode)
-
   const onSignInHandler = () => {
-    toggleColorMode(!colorMode);
-
-    // navigation.navigate("Login");
+    navigation.navigate("Login");
   };
 
   const onRegisterHandler = () => {
@@ -26,7 +22,7 @@ const FirstPage = ({ navigation }) => {
       alignItems="center"
       display="flex"
       flex={1}
-      bg={theme.colors.mode[colorMode]?.primary}
+      bg={theme.colors.mode[colorMode]?.background}
     >
       <VStack flex={6}>
         <Carousel />
@@ -37,7 +33,7 @@ const FirstPage = ({ navigation }) => {
             width={"50%"}
             onPressHandler={onSignInHandler}
             buttonText={i18n.t("Intro.SignInButton")}
-            buttonBg={"black"}
+            buttonBg={theme.colors.mode[colorMode]?.buttonBg}
             buttonBorderBottomRightRadius={0}
             buttonBorderTopRightRadius={0}
             buttonTextStyle={{ fontSize: "25", fontWeight: "bold" }}

@@ -8,7 +8,7 @@ export default authRoutes = [
         name: AUTH_ROUTES.INTRO_PAGE,
         component: FirstPage,
         options: {
-            headerTitle: ""
+            headerShown: false,
         }
     },
     {
@@ -21,5 +21,8 @@ export default authRoutes = [
     {
         name: AUTH_ROUTES.REGISTER,
         component: Register,
+        options : {
+            headerTitle: "Get Register",
+        }
     }
 ];

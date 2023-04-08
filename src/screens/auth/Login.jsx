@@ -1,24 +1,6 @@
-import React, { useEffect, useState } from "react";
-import {
-  Text,
-  VStack,
-  HStack,
-  Link,
-  Divider,
-  Box,
-  Center,
-  View,
-} from "native-base";
-import {
-  MaterialIcons,
-  AntDesign,
-  Entypo,
-  MaterialCommunityIcons,
-} from "@expo/vector-icons";
-
+import React, { useState } from "react";
+import { Text, VStack, Link, Divider, Box, View } from "native-base";
 import CustomButton from "../../components/customComponents/CustomButton";
-import CustomIcon from "../../components/customComponents/CustomIcon";
-import CustomInput from "../../components/customComponents/CustomInput";
 import postLogin from "../../common/api/auth/postLogin";
 import { useSelector } from "react-redux";
 import { API_STATUS } from "../../common/enums/apiEnums";
@@ -27,10 +9,15 @@ import Loading from "../../components/loading/Loading";
 import InputField from "../../components/forms/InputField";
 import { useForm } from "react-hook-form";
 import styles from "./Auth.styles";
+import { useColorMode, useTheme } from "native-base";
+import ShareIcons from "../../components/shareIcon/ShareIcons";
 
 const Login = ({ navigation, route }) => {
   //useSelector
-  const { loginStatus, userData } = useSelector((state) => state?.auth);
+  const { loginStatus } = useSelector((state) => state?.auth);
+  const { colorMode } = useColorMode();
+  const theme = useTheme();
+  const themeColor = theme.colors.mode[colorMode];
 
   //useState
   const [show, setShow] = useState(false);
@@ -38,7 +25,6 @@ const Login = ({ navigation, route }) => {
   const { control, handleSubmit } = useForm();
 
   const { message } = route.params || false;
-
 
   //Functions
   const onRegisterHandler = () => {
@@ -59,14 +45,14 @@ const Login = ({ navigation, route }) => {
       {loginStatus == API_STATUS.REQUEST ? (
         <Loading />
       ) : (
-        <VStack display="flex" flex={1} bg="white">
-          <Text fontSize="40" alignSelf="flex-start" ml={10} my={2} bold>
+        <VStack display="flex" flex={1} bg={themeColor?.background}>
+          <Text fontSize={40} ml={10} my={2} bold>
             {i18n.t("Login.LetsSign")}
           </Text>
-          <Text fontSize="30" alignSelf="flex-start" ml={10} bold>
+          <Text fontSize={30} ml={10} bold>
             {i18n.t("Login.WelcomeBack")}
           </Text>
-          <Text fontSize="30" alignSelf="flex-start" ml={10} bold>
+          <Text fontSize={30} ml={10} bold>
             {i18n.t("Login.Missed")}
           </Text>
           <View style={{ marginTop: 5 }}>
@@ -104,31 +90,28 @@ const Login = ({ navigation, route }) => {
             height={"8%"}
             width={"80%"}
             onPressHandler={handleSubmit(onLoginHandler)}
-            buttonBg={"black"}
+            buttonBg={themeColor?.buttonBg}
             buttonText={i18n.t("Login.Login")}
-            buttonTextStyle={{ fontSize: "20", fontWeight: "bold" }}
+            buttonTextStyle={{ color: themeColor?.background, fontSize: 20 }}
           />
 
           <Box w={145} display="flex" flexDirection="row">
-            <Divider mt="10" ml={10} mr={2} bg="black"></Divider>
-            <Text mt="7" bold>
+            <Divider mt={10} ml={12} mr={2} bg={themeColor?.text}></Divider>
+            <Text mt={7} bold>
               or
             </Text>
-            <Divider mt="10" ml={2} bg="black"></Divider>
+            <Divider mt={10} ml={2} bg={themeColor?.text}></Divider>
           </Box>
 
-          <Center mt={10}>
-            <HStack space={3} alignContent="center">
-              <CustomIcon as={AntDesign} iconName="android1" />
-              <CustomIcon as={Entypo} iconName="app-store" />
-              <CustomIcon as={MaterialCommunityIcons} iconName="web" />
-            </HStack>
-          </Center>
+          <ShareIcons />
 
           <Text mt="8%" mx={10} alignSelf="center">
             {i18n.t("Login.DontYouHaveAccount")}
             {` `}
-            <Link fontWeight="bold" onPress={onRegisterHandler}>
+            <Link
+              onPress={onRegisterHandler}
+              _text={{ color: themeColor?.text, fontWeight: "bold" }}
+            >
               {i18n.t("Login.RegisterNow")}
             </Link>
           </Text>

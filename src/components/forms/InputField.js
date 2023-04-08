@@ -3,7 +3,7 @@ import { Controller } from "react-hook-form";
 import { View, Text, TextInput, Pressable } from "react-native";
 import { MaterialIcons, AntDesign } from "@expo/vector-icons";
 import { InputLeftAddon } from "../../../node_modules/native-base/src/components/primitives/Input/InputAddons";
-import { Input } from "native-base";
+import { Input, useColorMode } from "native-base";
 
 export default function InputField({
   control,
@@ -21,6 +21,10 @@ export default function InputField({
   leftIconOnPress,
   rightIconOnPress,
 }) {
+  const { colorMode } = useColorMode();
+
+  const styleTheme = colorMode === "dark" ? "white" : "black";
+
   return (
     <Controller
       control={control}
@@ -39,8 +43,12 @@ export default function InputField({
             secureTextEntry={secureTextEntry}
             onBlur={onBlur}
             placeholder={placeholder}
+            placeholderTextColor={styleTheme}
             height={50}
             borderWidth={1}
+            _focus={{
+              borderColor: styleTheme,
+            }}
             mx={"10%"}
             my={2}
             borderRadius={5}
@@ -50,7 +58,7 @@ export default function InputField({
                 <MaterialIcons
                   name={leftIconName}
                   size={"24"}
-                  color={"black"}
+                  color={styleTheme}
                   style={{ marginLeft: 10 }}
                   onPress={leftIconOnPress}
                 />
@@ -61,7 +69,7 @@ export default function InputField({
                 <MaterialIcons
                   name={rightIconName}
                   size={"24"}
-                  color={"black"}
+                  color={styleTheme}
                   style={{ marginRight: 10 }}
                   onPress={rightIconOnPress}
                 />

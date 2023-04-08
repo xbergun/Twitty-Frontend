@@ -1,5 +1,5 @@
 import React from 'react'
-import { Icon } from 'native-base'
+import { Icon, useColorMode } from 'native-base'
 import {
   MaterialIcons,
   AntDesign,
@@ -7,18 +7,21 @@ import {
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
 
+
+
 const CustomIcon = ({
     size="2xl",
     iconName,
-    color="coolGray.800",
+    color,
     as = MaterialIcons
 }) => {
+  const { colorMode } = useColorMode();
   return (
     <Icon
             as={as}
             size={size}
             name={iconName}
-            color={color}
+            color={colorMode === "dark" ? "white" : "black"}
           />
   )
 }
