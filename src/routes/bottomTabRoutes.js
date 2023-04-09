@@ -5,6 +5,7 @@ import NotificationScreen from "../screens/notifications/NotificationScreen";
 import MessagesScreen from "../screens/messages/MessagesScreen";
 import AppStackNavigation from '../navigations/HomeNavigation';
 import HomeNavigation from "../navigations/HomeNavigation";
+import { getThemeColor } from "../utils/theme/themeUtils";
 
 export default bottomTabBarRoutes = [
   {
@@ -13,10 +14,11 @@ export default bottomTabBarRoutes = [
     options: {
       headerShown: false,
       tabBarIcon: ({ focused, color, size }) => {
+        const theme = getThemeColor();
         return focused ? (
-          <CustomIcon iconName="home" color="blue.500" />
+          <CustomIcon iconName="home" color={theme.tabBarIconColor} />
         ) : (
-          <CustomIcon iconName="home" color="coolGray.800" />
+          <CustomIcon iconName="home" color={theme.tabBarIconColor} />
         );
       },
     },

@@ -9,11 +9,24 @@ import { HOME_ROUTES } from "./Constants";
 const Tab = createBottomTabNavigator();
 
 export default BottomTabNavigation = () => {
+
+ 
+
+
   return (
     <Tab.Navigator
       initialRouteName={HOME_ROUTES.HOME}
       screenOptions={{
         tabBarShowLabel: false,
+        tabBarStyle: {
+          backgroundColor: "white",
+          borderTopWidth: 0,
+          elevation: 0,
+        },
+
+        tabBarActiveTintColor: "white",
+        tabBarInactiveTintColor: "white",
+
       }}
     >
       {bottomTabBarRoutes.map((route, index) => {
