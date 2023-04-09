@@ -5,20 +5,14 @@ import NotificationScreen from "../screens/notifications/NotificationScreen";
 import MessagesScreen from "../screens/messages/MessagesScreen";
 import AppStackNavigation from '../navigations/HomeNavigation';
 import HomeNavigation from "../navigations/HomeNavigation";
+import { getThemeColor } from "../utils/theme/themeUtils";
 
 export default bottomTabBarRoutes = [
   {
-    name: BOTTOM_TAB_ROUTES.STACK_ROUTES,
+    name: BOTTOM_TAB_ROUTES.HOME,
     component: HomeNavigation,
     options: {
       headerShown: false,
-      tabBarIcon: ({ focused, color, size }) => {
-        return focused ? (
-          <CustomIcon iconName="home" color="blue.500" />
-        ) : (
-          <CustomIcon iconName="home" color="coolGray.800" />
-        );
-      },
     },
   },
   {
@@ -26,13 +20,7 @@ export default bottomTabBarRoutes = [
     component: SearchScreen,
     options: {
       headerTitle: "Search",
-      tabBarIcon: ({ focused }) => {
-        return focused ? (
-          <CustomIcon iconName="search" color="blue.500" />
-        ) : (
-          <CustomIcon iconName="search" color="coolGray.800" />
-        );
-      },
+     
     },
   },
   {
@@ -40,13 +28,7 @@ export default bottomTabBarRoutes = [
     component: NotificationScreen,
     options: {
       headerTitle: "Notification",
-      tabBarIcon: ({ focused }) => {
-        return focused ? (
-          <CustomIcon iconName="notifications" color="blue.500" />
-        ) : (
-          <CustomIcon iconName="notifications" color="coolGray.800" />
-        );
-      },
+     
     },
   },
   {
@@ -54,13 +36,7 @@ export default bottomTabBarRoutes = [
     component: MessagesScreen,
     options: {
       headerTitle: "Messages",
-      tabBarIcon: ({ focused }) => {
-        return focused ? (
-          <CustomIcon iconName="mail" color="blue.500" />
-        ) : (
-          <CustomIcon iconName="mail" color="coolGray.800" />
-        );
-      },
+      
     },
   },
 ];

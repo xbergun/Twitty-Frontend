@@ -9,6 +9,9 @@ export default SettingsNavigation = () => {
   return (
     <Stack.Navigator
         initialRouteName={SETTINGS_ROUTES.SETTINGS}
+        screenOptions={{
+          headerShown: false,
+        }}
     >
       {
         settingsRoutes.map((route, index) => {

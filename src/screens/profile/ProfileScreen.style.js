@@ -1,10 +1,10 @@
 import { StyleSheet } from "react-native";
 
 
-const styles = StyleSheet.create({
+const styles = (theme) => StyleSheet.create({
     baseContainer: {
-        height: "100%", 
-        backgroundColor: "white"
+        height: "100%",
+        backgroundColor:theme?.background
     },
     coverImage : {
         width: "100%",

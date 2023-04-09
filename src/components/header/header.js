@@ -2,38 +2,44 @@ import { View } from 'react-native';
 
 
 const Header = ({
-    title,
-    subtitle,
-    image,
-    imageAlt,
-    imagePosition,
-    children,
     rightComponent,
     leftComponent,
     centerComponent,
+    isGoBack,
+    isToggleDrawer,
 }) => {
     return (
-        <>
+        <HStack styles={{
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            height: 50,
+            backgroundColor: 'white',
+            borderBottomWidth: 1,
+            borderBottomColor: 'lightgray',
+        }}>
             {
-                title && <Text style={styles.title}>{title}</Text>
+                leftComponent && (
+                    <View>
+                        {leftComponent}
+                    </View>
+                )
+            }
+            {
+                centerComponent && (
+                    <View>
+                        {centerComponent}
+                    </View>
+                )
+            }
+            {
+                rightComponent && (
+                    <View>
+                        {rightComponent}
+                    </View>
+                )
             }
 
-            {
-                subtitle && <Text style={styles.subtitle}>{subtitle}</Text>
-            }
-            {
-                rightComponent && <View style={styles.rightComponent}>{rightComponent}</View>
-            }
-
-            {
-                leftComponent && <View style={styles.leftComponent}>{leftComponent}</View>
-            }
-
-            {
-                centerComponent && <View style={styles.centerComponent}>{centerComponent}</View>
-            }
-            
-        </>
+        </HStack>
     )
 }
 

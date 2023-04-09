@@ -11,7 +11,8 @@ export default drawerRoutes = [
         name: DRAWER_ROUTES.BOTTOM_TAB_ROUTES,
         component: BottomTabNavigation,
         options : {
-            headerShown: false,
+            headerShown: true,
+            headerTitle: "Twitty",
             drawerLabel : "Home",
             drawerIcon : ({}) =><CustomIcon  iconName="home" />,
         }
@@ -31,7 +32,6 @@ export default drawerRoutes = [
         options : {
             drawerLabel : "Settings",
             drawerIcon : ({}) =><CustomIcon  iconName="settings" />,
-            headerShown: false,
         }
     },
 ]

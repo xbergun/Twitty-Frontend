@@ -1,29 +1,21 @@
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import { Text } from "native-base";
+import { useColorMode, useTheme } from "native-base";
 import drawerRoutes from "../routes/drawerRoutes";
 import CustomDrawerContent from "../components/card/CustomDrawerContent";
-
-
-
+import { getDrawerScreenOptions } from "./screenOptions/DrawerScreenOptions";
+import { getThemeColor } from "../utils/theme/themeUtils";
 
 const Drawer = createDrawerNavigator();
 
 export default DrawerNavigation = () => {
+  
+  const theme = getThemeColor();
+
   return (
-    <Drawer.Navigator 
+    <Drawer.Navigator
       drawerContent={(props) => <CustomDrawerContent {...props} />}
-    screenOptions={(route) => {
-      return {
-        headerShown: true,
-        drawerLabel: () => {
-          return (
-            <Text>
-              {route.route.name}
-            </Text>
-          );
-        }
-      };
-    }}>
+      screenOptions={getDrawerScreenOptions(theme)}
+    >
       {drawerRoutes.map((route, index) => {
         return (
           <Drawer.Screen

@@ -30,3 +30,5 @@ export const SETTINGS_ROUTES = {
     EDIT_PROFILE : "EditProfileScreen",
     APPEARANCE : "AppearanceScreen",
 }
+
+

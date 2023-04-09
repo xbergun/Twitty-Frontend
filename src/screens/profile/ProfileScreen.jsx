@@ -5,6 +5,7 @@ import { VStack, HStack, Button } from 'native-base';
 import styles from './ProfileScreen.style';
 import { TouchableOpacity } from 'react-native';
 import { useSelector } from 'react-redux';
+import { getThemeColor } from '../../utils/theme/themeUtils';
 
 const DUMMY_IMAGE = "https://images.unsplash.com/photo-1449034446853-66c86144b0ad?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8NXx8fGVufDB8fHx8&w=1000&q=80"
 
@@ -15,23 +16,25 @@ const ProfileScreen = ({ route }) => {
 
   const {user} = useSelector(state => state?.auth?.userData);
 
-  let { _id, name, username, avatar, coverImage } = route.params.user || user;
+  const theme = getThemeColor();
 
-  avatar = avatar || dummyAvatar;
-  coverImage = coverImage || DUMMY_IMAGE;
+  let { name, username } = route?.params?.user ? route.params.user : user;
+
+  
+
 
 
   return (
-    <SafeAreaView style={styles.baseContainer}>
+    <SafeAreaView style={styles(theme).baseContainer}>
       <ScrollView>
         <VStack>
           <View >
-            <Image source={{ uri: coverImage }} style={styles.coverImage} />
+            <Image source={{ uri: DUMMY_IMAGE }} style={styles.coverImage} />
           </View>
           <HStack space={2} justifyContent="space-around" >
             <View style={{
             }}>
-              <Image source={{ uri: avatar }} style={styles.userAvatar} />
+              <Image source={{ uri: dummyAvatar }} style={styles.userAvatar} />
             </View>
             <TouchableOpacity style={styles.editProfileButton}>
               <Text style={styles.editProfileText}>Edit Profile</Text>
