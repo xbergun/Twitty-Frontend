@@ -1,6 +1,5 @@
-import { Button } from 'react-native';
 import CreatePost from '../components/posts/CreatePost/CreatePost';
-import { HOME_ROUTES, STACK_ROUTES } from '../navigations/Constants';
+import { HOME_ROUTES } from '../navigations/Constants';
 import HomeScreen from '../screens/home/HomeScreen';
 
 export default homeRoutes = [

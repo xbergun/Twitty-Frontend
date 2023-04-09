@@ -11,7 +11,7 @@ export const theme = extendTheme({
         buttonBg: "black",
         sliderDot: "#000",
         activeTintColor: "black",
-        tabBarIconColor: "black",
+        tabBarIconColor: "#E26310",
       },
       dark: {
         primary: "#576CBC",
@@ -21,7 +21,7 @@ export const theme = extendTheme({
         buttonBg: "#E26310",
         sliderDot: "#ccc",
         activeTintColor: "#E26310",
-        tabBarIconColor: "white",
+        tabBarIconColor: "#E26310",
       },
     },
   },
