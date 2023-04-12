@@ -11,9 +11,6 @@ export default bottomTabBarRoutes = [
   {
     name: BOTTOM_TAB_ROUTES.HOME,
     component: HomeNavigation,
-    options: {
-      headerShown: false,
-    },
   },
   {
     name: BOTTOM_TAB_ROUTES.SEARCH,

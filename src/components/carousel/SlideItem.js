@@ -8,16 +8,15 @@ import {
   Easing,
 } from "react-native";
 import React from "react";
-import { useColorMode, useTheme } from "native-base";
+import { getThemeColor } from '../../utils/theme/themeUtils';
 const { width, height } = Dimensions.get("screen");
 
 const SlideItem = ({ item }) => {
   const translateYImage = new Animated.Value(0);
-  const { colorMode, toggleColorMode } = useColorMode();
-  const theme = useTheme();
-  const themeColor = theme.colors.mode[colorMode];
 
-  console.log("SlideItem -> theme", colorMode);
+
+  const themeColor = getThemeColor()
+
   Animated.timing(translateYImage, {
     toValue: 0,
     duration: 1000,

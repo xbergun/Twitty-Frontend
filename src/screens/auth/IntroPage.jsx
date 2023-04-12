@@ -36,7 +36,7 @@ const FirstPage = ({ navigation }) => {
             buttonBg={theme.colors.mode[colorMode]?.buttonBg}
             buttonBorderBottomRightRadius={0}
             buttonBorderTopRightRadius={0}
-            buttonTextStyle={{ fontSize: "25", fontWeight: "bold" }}
+            buttonTextStyle={{ fontSize: 25, fontWeight: "bold" }}
           />
           <CustomButton
             width={"50%"}
@@ -44,7 +44,7 @@ const FirstPage = ({ navigation }) => {
             buttonText={i18n.t("Intro.SignUpButton")}
             buttonBorderBottomLeftRadius={0}
             buttonBorderTopLeftRadius={0}
-            buttonTextStyle={{ fontSize: "25", fontWeight: "bold" }}
+            buttonTextStyle={{ fontSize: 25, fontWeight: "bold" }}
           />
         </HStack>
       </VStack>

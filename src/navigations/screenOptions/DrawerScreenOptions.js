@@ -1,6 +1,6 @@
 export const getDrawerScreenOptions = (themeColor) => {
   return {
-    headerShown: true,
+    headerShown: false,
     headerStyle: {
       backgroundColor: themeColor?.background,
     },

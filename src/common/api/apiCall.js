@@ -18,6 +18,9 @@ const apiCall = async (method, endpoint, headers, data, params) => {
     if (params) {
       config.params = params;
     }
+
+    console.log("config: ", config);
+
     const response = await axios(config);
     return response;
   } catch (error) {
