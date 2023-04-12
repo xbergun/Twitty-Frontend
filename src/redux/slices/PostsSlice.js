@@ -3,9 +3,11 @@ import { API_STATUS } from "../../common/enums/apiEnums";
 
 const initialState = {
   allPostsData: [],
+  postsByUser : [],
 
   getAllPostApiStatus: API_STATUS.NONE,
   postCreatePostApiStatus : API_STATUS.NONE,
+  getPostsByUserApiStatus : API_STATUS.NONE,
 };
 
 const AuthSlice = createSlice({
@@ -40,6 +42,19 @@ const AuthSlice = createSlice({
       state.postCreatePostApiStatus = API_STATUS.FAILURE;
     },
 
+
+    getPostsByUserRequest: (state) => {
+      state.getPostsByUserApiStatus = API_STATUS.REQUEST;
+    },
+    getPostsByUserSuccess: (state, action) => {
+      state.getPostsByUserApiStatus = API_STATUS.SUCCESS;
+      state.postsByUser = action.payload;
+    },
+    getPostsByUserFailure: (state) => {
+      state.getPostsByUserApiStatus = API_STATUS.FAILURE;
+      state.postsByUser = [];
+    },
+
   },
 });
 
@@ -53,6 +68,10 @@ export const {
     postCreatePostFailure,
 
     clearApiStatus,
+
+    getPostsByUserRequest,
+    getPostsByUserSuccess,
+    getPostsByUserFailure,
 } = AuthSlice.actions;
 
 export default AuthSlice.reducer;

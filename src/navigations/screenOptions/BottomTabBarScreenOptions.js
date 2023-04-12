@@ -3,6 +3,7 @@ import { BOTTOM_TAB_ROUTES, HOME_ROUTES } from "../Constants";
 
 export const getBottomTabBarScreenOptions = (themeColor,route) => {
     return {
+        headerShown: true,
         tabBarShowLabel: false,
         tabBarStyle: {
             backgroundColor: themeColor?.background,

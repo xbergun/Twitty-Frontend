@@ -11,8 +11,6 @@ const ChangeThemeButton = () => {
     toggleColorMode(!colorMode);
   };
 
-  console.log(colorMode)
-
   const conditionColor = colorMode === "dark" ? "white" : "black";
   const borderColor = colorMode === "dark" ? "black" : "white";
 

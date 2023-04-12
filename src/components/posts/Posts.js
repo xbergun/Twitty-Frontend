@@ -1,10 +1,9 @@
 import { FlatList, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import PostContent from "./PostContent/PostContent";
-import PostListEmptyComponent from './PostContent/PostListEmptyComponent';
+import PostListEmptyComponent from "./PostContent/PostListEmptyComponent";
 
-const Posts = ({posts}) => {
-
+const Posts = ({ posts }) => {
   const handleRenderItem = ({ item }) => {
     return <PostContent post={item} />;
   };
@@ -27,7 +26,7 @@ const Posts = ({posts}) => {
 export default Posts;
 
 const styles = StyleSheet.create({
-  flatList :{
-    height: '100%'
-  }
+  flatList: {
+    height: "100%",
+  },
 });

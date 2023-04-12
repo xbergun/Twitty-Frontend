@@ -37,6 +37,7 @@ const styles = (theme) => StyleSheet.create({
     nameText : {
         fontSize: 22,
         fontWeight: "900",
+        color: theme?.text
     },
     usernameText : {
         fontSize: 16,
@@ -46,7 +47,7 @@ const styles = (theme) => StyleSheet.create({
     bioText : {
         fontSize: 16,
         fontWeight: "400",
-        color: "black",
+        color: theme?.text,
         marginTop: 10,
     }
 
